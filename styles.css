@@ -242,6 +242,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-self: center;
 }
 
 .bio-text p {
@@ -252,6 +253,10 @@ a:hover {
     font-weight: 400;
 }
 
+.bio-text p:last-child {
+    margin-bottom: 0;
+}
+
 .bio-text strong {
     font-weight: 600;
     color: var(--color-dark-brown);
@@ -259,13 +264,13 @@ a:hover {
 
 /* Academic Summary */
 .academic-summary {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     padding: 0;
 }
 
 .academic-summary h2 {
     margin-top: 0;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     font-size: 18px;
 }
 
@@ -277,12 +282,12 @@ a:hover {
 
 /* Experience Section Headers */
 .experience-section {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .experience-section h2 {
     font-size: 18px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     color: var(--color-dark-olive);
     text-transform: capitalize;
     letter-spacing: 0.5px;
@@ -291,7 +296,7 @@ a:hover {
 
 /* Experience Items with Dropdown */
 .experience-item {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     border: none;
     background: transparent;
     overflow: hidden;
@@ -299,11 +304,11 @@ a:hover {
 }
 
 .experience-header {
-    padding: 8px 0;
+    padding: 12px 0;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     user-select: none;
     transition: all 0.2s ease;
     border-bottom: 1px solid transparent;
@@ -319,25 +324,27 @@ a:hover {
 
 .experience-header h3 {
     color: var(--color-dark-olive);
-    margin-bottom: 2px;
-    font-size: 17px;
+    margin-bottom: 3px;
+    font-size: 16px;
     font-weight: 500;
-    line-height: 1.4;
+    line-height: 1.3;
 }
 
 .experience-meta {
     font-size: 12px;
     color: var(--color-text-light);
     font-style: italic;
+    margin: 0;
 }
 
 .experience-toggle {
     font-size: 12px;
     color: var(--color-olive);
     transition: transform 0.3s ease;
-    margin-left: 8px;
+    margin-left: 12px;
     font-weight: 300;
     flex-shrink: 0;
+    line-height: 1.3;
 }
 
 .experience-item.active .experience-toggle {
@@ -352,30 +359,38 @@ a:hover {
 }
 
 .experience-item.active .experience-details {
-    max-height: 1000px;
-    padding: 8px 0 0;
+    max-height: 500px;
+    padding: 12px 0 16px;
 }
 
 .experience-details p {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.65;
     color: var(--color-text);
 }
 
+.experience-details p:last-child {
+    margin-bottom: 0;
+}
+
 .experience-details ul {
-    margin: 6px 0;
+    margin: 8px 0 0;
     padding-left: 0;
     list-style: none;
 }
 
 .experience-details li {
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     font-size: 14px;
     line-height: 1.6;
     color: var(--color-text);
     padding-left: 14px;
     position: relative;
+}
+
+.experience-details li:last-child {
+    margin-bottom: 0;
 }
 
 .experience-details li::before {
@@ -409,6 +424,126 @@ a:hover {
     font-size: 14px;
     color: var(--color-text-light);
     margin-bottom: 15px;
+}
+
+/* Writing Sections */
+.writing-section {
+    margin-bottom: 50px;
+}
+
+.writing-section h2 {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-text-light);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+}
+
+.writing-section h2::after {
+    width: 40px;
+    height: 1px;
+}
+
+/* Featured Story Card */
+.featured-card {
+    display: block;
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(122, 138, 90, 0.06) 0%, rgba(157, 138, 111, 0.06) 100%);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--color-olive), var(--color-warm-brown));
+    transition: width 0.4s ease;
+}
+
+.featured-card:hover {
+    border-color: rgba(122, 138, 90, 0.3);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+}
+
+.featured-card:hover::before {
+    width: 4px;
+}
+
+.featured-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-olive);
+    margin-bottom: 14px;
+}
+
+.featured-title {
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--color-dark-brown);
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+}
+
+.featured-subtitle {
+    font-size: 17px;
+    color: var(--color-text-light);
+    font-style: italic;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.featured-excerpt {
+    margin-bottom: 24px;
+}
+
+.featured-excerpt p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--color-text);
+    margin-bottom: 0;
+}
+
+.featured-themes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.theme-tag {
+    font-size: 12px;
+    padding: 4px 12px;
+    background: rgba(122, 138, 90, 0.08);
+    color: var(--color-dark-olive);
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    font-weight: 500;
+}
+
+.featured-cta {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-olive);
+    letter-spacing: 0.3px;
+    transition: letter-spacing 0.3s ease;
+}
+
+.featured-card:hover .featured-cta {
+    letter-spacing: 0.8px;
 }
 
 /* Contact Form */
@@ -571,10 +706,26 @@ a:hover {
     .contact-links {
         flex-direction: column;
     }
-    
+
     .contact-links a {
         width: 100%;
         text-align: center;
+    }
+
+    .featured-card {
+        padding: 28px 24px;
+    }
+
+    .featured-title {
+        font-size: 24px;
+    }
+
+    .featured-subtitle {
+        font-size: 15px;
+    }
+
+    .featured-excerpt p {
+        font-size: 15px;
     }
 }
 
