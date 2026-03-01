@@ -14,37 +14,59 @@
 
         /* ── Header ── */
         .sim-header {
-            margin-bottom: 52px;
+            position: relative;
+            overflow: hidden;
+            margin: -88px -48px 60px -48px;
+            padding: 96px 48px 72px;
         }
+        /* Background: desaturated logos, very dark */
+        .sim-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('WBD-Paramount.jpg');
+            background-size: 72%;
+            background-position: center 55%;
+            background-repeat: no-repeat;
+            filter: grayscale(100%) brightness(0.12);
+            transform: scale(1.06);
+            z-index: 0;
+        }
+        /* Warm dark gradient over the image */
+        .sim-header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                160deg,
+                rgba(34, 26, 18, 0.88) 0%,
+                rgba(28, 22, 14, 0.80) 60%,
+                rgba(22, 17, 10, 0.90) 100%
+            );
+            z-index: 1;
+        }
+        .sim-header > * { position: relative; z-index: 2; }
+
         .sim-header h1 {
             font-size: 46px;
             font-weight: 300;
-            color: var(--color-dark-brown);
+            color: #f0e8d8;
             letter-spacing: -0.5px;
             margin-bottom: 10px;
             line-height: 1.1;
         }
         .sim-header h1 em {
             font-style: normal;
-            color: var(--color-dark-olive);
+            color: #c8a87a;
         }
         .sim-header .lede {
             font-size: 17px;
-            color: var(--color-text-light);
+            color: rgba(230, 218, 198, 0.75);
             font-style: italic;
-            margin-bottom: 14px;
-            line-height: 1.5;
-        }
-        .sim-header .context-line {
-            font-size: 13px;
-            color: var(--color-text-light);
-            margin: 0;
-            padding: 10px 14px;
-            border-left: 2px solid rgba(157, 138, 111, 0.5);
+            margin-bottom: 0;
             line-height: 1.6;
+            max-width: 620px;
         }
-        .context-line strong { color: var(--color-dark-brown); font-weight: 600; }
-        .context-line .red   { color: #b05a3c; font-weight: 600; }
 
         /* ── Grid ── */
         .sim-grid {
@@ -316,6 +338,7 @@
         }
         @media (max-width: 768px) {
             .sim-page { padding: 76px 20px 60px; }
+            .sim-header { margin: -76px -20px 48px -20px; padding: 80px 20px 56px; }
             .sim-header h1 { font-size: 32px; }
             .method-grid { grid-template-columns: 1fr; gap: 24px; }
         }
