@@ -14,59 +14,27 @@
 
         /* ── Header ── */
         .sim-header {
-            position: relative;
-            overflow: hidden;
-            margin: -88px -48px 60px -48px;
-            padding: 96px 48px 80px;
-            background-color: #181008;
+            margin-bottom: 52px;
         }
-        /* Logos — transparent PNG, floated right, ghosted */
-        .sim-header::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url('wbd-paramount.png');
-            background-size: 48%;
-            background-position: right 5% center;
-            background-repeat: no-repeat;
-            opacity: 0.11;
-            z-index: 0;
-        }
-        /* Directional gradient: fully opaque left (text), fades right (logos peek through) */
-        .sim-header::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to right,
-                #181008 0%,
-                #181008 38%,
-                rgba(24, 16, 8, 0.82) 62%,
-                rgba(24, 16, 8, 0.30) 100%
-            );
-            z-index: 1;
-        }
-        .sim-header > * { position: relative; z-index: 2; }
-
         .sim-header h1 {
-            font-size: 52px;
+            font-size: 46px;
             font-weight: 300;
-            color: #f2eadb;
-            letter-spacing: -1px;
-            margin-bottom: 12px;
-            line-height: 1.05;
+            color: var(--color-dark-brown);
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+            line-height: 1.1;
         }
         .sim-header h1 em {
-            font-style: italic;
-            color: #c8a87a;
+            font-style: normal;
+            color: var(--color-dark-olive);
         }
         .sim-header .lede {
-            font-size: 16px;
-            color: rgba(225, 210, 185, 0.62);
+            font-size: 17px;
+            color: var(--color-text-light);
             font-style: italic;
             margin-bottom: 0;
-            line-height: 1.7;
-            max-width: 560px;
+            line-height: 1.6;
+            max-width: 620px;
         }
 
         /* ── Grid ── */
@@ -339,8 +307,8 @@
         }
         @media (max-width: 768px) {
             .sim-page { padding: 76px 20px 60px; }
-            .sim-header { margin: -76px -20px 48px -20px; padding: 80px 20px 64px; }
-            .sim-header::before { background-size: 90%; background-position: center bottom; opacity: 0.07; }
+            .sim-header { margin-bottom: 36px; }
+            .sim-header h1 { font-size: 32px; }
             .sim-header h1 { font-size: 32px; }
             .method-grid { grid-template-columns: 1fr; gap: 24px; }
         }
@@ -393,7 +361,7 @@
 
             <div class="slider-block">
                 <div class="slider-top">
-                    <span class="slider-name">Avg. price per subscriber increase / year</span>
+                    <span class="slider-name">Subscription price increase / year</span>
                     <span class="slider-num" id="v-arpu">4%</span>
                 </div>
                 <input type="range" id="s-arpu" min="0" max="12" value="4" step="0.5">
@@ -761,7 +729,7 @@ function dArpu(r) {
         : r <= 10
         ? `Aggressive pricing. Standard and premium subscribers — the ones generating real margin — are most likely to cancel or step down to the cheaper ad tier.`
         : `Very risky. At this pace the blended average nearly doubles in 6 years. Even loyal subscribers start weighing whether it's worth it.`;
-    return arpuFeas(r) + `<strong>Blended avg. across tiers: $7.76/mo today → $${y5.toFixed(2)}/mo in 5 years.</strong> ${plain}`;
+    return arpuFeas(r) + `<strong>Avg. across all tiers: $7.76/mo today → $${y5.toFixed(2)}/mo in 5 years.</strong> ${plain}`;
 }
 
 function dCost(r) {

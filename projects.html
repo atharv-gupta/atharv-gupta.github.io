@@ -26,64 +26,46 @@
 
         /* ── Project card ── */
         .project-card {
-            display: block;
-            position: relative;
+            display: flex;
             overflow: hidden;
             border-radius: 3px;
             text-decoration: none;
             color: inherit;
             margin-bottom: 32px;
-            min-height: 340px;
-            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            min-height: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.08);
         }
         .project-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 20px 56px rgba(0,0,0,0.28);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.15);
         }
 
-        /* Background: solid dark base */
-        .project-card { background-color: #181008; }
-
-        /* Logos — transparent PNG, right-anchored ghost */
-        .project-card-bg {
-            position: absolute;
-            inset: 0;
-            background-size: 52%;
-            background-position: right 6% center;
-            background-repeat: no-repeat;
-            opacity: 0.13;
-            transition: opacity 0.45s ease;
-            z-index: 0;
-        }
-        .project-card:hover .project-card-bg {
-            opacity: 0.20;
-        }
-
-        /* Directional gradient: text side fully covered, logo side opens up */
-        .project-card-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to right,
-                #181008 0%,
-                #181008 35%,
-                rgba(24, 16, 8, 0.78) 58%,
-                rgba(24, 16, 8, 0.22) 100%
-            );
-            transition: opacity 0.45s ease;
-            z-index: 1;
-        }
-
-        /* Content */
-        .project-card-content {
-            position: relative;
-            z-index: 2;
-            padding: 48px 52px 44px;
+        /* Left: dark text panel */
+        .project-card-text {
+            flex: 1;
+            background: #181008;
+            padding: 44px 48px 40px;
             display: flex;
             flex-direction: column;
-            height: 100%;
-            min-height: 340px;
             justify-content: space-between;
+        }
+
+        /* Right: white logo panel */
+        .project-card-image {
+            width: 36%;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 36px 32px;
+            border-left: 1px solid rgba(0,0,0,0.06);
+            flex-shrink: 0;
+        }
+        .project-card-image img {
+            width: 100%;
+            max-width: 280px;
+            object-fit: contain;
         }
 
         .project-card-top {}
@@ -95,34 +77,35 @@
             text-transform: uppercase;
             letter-spacing: 1.6px;
             color: rgba(200, 168, 122, 0.75);
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
         .project-title {
-            font-size: 38px;
+            font-size: 34px;
             font-weight: 300;
             color: #f0e8d8;
             letter-spacing: -0.5px;
             line-height: 1.1;
-            margin-bottom: 6px;
+            margin-bottom: 0;
         }
         .project-title em {
-            font-style: normal;
+            font-style: italic;
             color: #c8a87a;
         }
         .project-tagline {
-            font-size: 16px;
-            color: rgba(230, 218, 195, 0.72);
+            font-size: 15px;
+            color: rgba(230, 218, 195, 0.68);
             font-style: italic;
-            line-height: 1.6;
-            margin-top: 16px;
-            max-width: 520px;
+            line-height: 1.65;
+            margin-top: 14px;
         }
 
         .project-card-bottom {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-top: 36px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+            gap: 12px;
         }
         .project-tags {
             display: flex;
@@ -134,8 +117,8 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.8px;
-            color: rgba(180, 160, 120, 0.6);
-            border: 1px solid rgba(180, 160, 120, 0.2);
+            color: rgba(180, 160, 120, 0.55);
+            border: 1px solid rgba(180, 160, 120, 0.18);
             padding: 3px 9px;
             border-radius: 2px;
         }
@@ -144,7 +127,7 @@
             color: #c8a87a;
             white-space: nowrap;
             letter-spacing: 0.2px;
-            opacity: 0.85;
+            opacity: 0.8;
             transition: opacity 0.2s;
         }
         .project-card:hover .project-cta { opacity: 1; }
@@ -181,11 +164,13 @@
         }
 
         @media (max-width: 768px) {
-            .projects-page { padding: 88px 20px 72px; }
-            .project-card-content { padding: 36px 28px 32px; }
-            .project-title { font-size: 28px; }
+            .projects-page { padding: 72px 20px 64px; }
+            .project-card { flex-direction: column-reverse; }
+            .project-card-image { width: 100%; padding: 28px 24px; border-left: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
+            .project-card-image img { max-width: 220px; }
+            .project-card-text { padding: 32px 24px 28px; }
+            .project-title { font-size: 26px; }
             .project-tagline { font-size: 14px; }
-            .project-card-bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
         }
     </style>
 </head>
@@ -212,9 +197,7 @@
 
     <!-- Debt Mountain -->
     <a href="wbd-deal.html" class="project-card fade-in">
-        <div class="project-card-bg" style="background-image: url('wbd-paramount.png');"></div>
-        <div class="project-card-overlay"></div>
-        <div class="project-card-content">
+        <div class="project-card-text">
             <div class="project-card-top">
                 <span class="project-type">Interactive Simulation</span>
                 <h2 class="project-title">The <em>Debt Mountain</em></h2>
@@ -229,6 +212,9 @@
                 </div>
                 <span class="project-cta">Explore the simulator &rarr;</span>
             </div>
+        </div>
+        <div class="project-card-image">
+            <img src="wbd-paramount.png" alt="Warner Bros. Discovery and Paramount Skydance">
         </div>
     </a>
 
