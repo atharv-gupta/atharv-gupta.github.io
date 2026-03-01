@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flamin' Fingerz — Atharv Gupta</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cjrtnc.leaningtech.com/3.0/cj3loader.js"></script>
+    <style>
+        .ff-page {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 100px 48px 96px;
+        }
+
+        /* ── Header ── */
+        .ff-header {
+            margin-bottom: 40px;
+        }
+        .ff-eyebrow {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: var(--color-text-light);
+            margin-bottom: 10px;
+        }
+        .ff-header h1 {
+            font-size: 42px;
+            font-weight: 300;
+            color: var(--color-dark-brown);
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+        .ff-header h1 em {
+            font-style: italic;
+            color: #b05a3c;
+        }
+        .ff-lede {
+            font-size: 15px;
+            color: var(--color-text-light);
+            line-height: 1.7;
+            max-width: 580px;
+            margin-bottom: 6px;
+        }
+        .ff-meta {
+            font-size: 12px;
+            color: var(--color-text-light);
+            opacity: 0.65;
+            font-style: italic;
+        }
+
+        /* ── Game wrapper ── */
+        .game-section {
+            margin-bottom: 52px;
+        }
+        .game-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--color-text-light);
+            margin-bottom: 12px;
+        }
+        .game-outer {
+            position: relative;
+            width: 616px;
+            max-width: 100%;
+            border: 1px solid var(--color-border);
+            border-radius: 3px;
+            overflow: hidden;
+            background: #1a1008;
+        }
+
+        /* CheerpJ display lives here */
+        #game-display {
+            width: 616px;
+            max-width: 100%;
+            height: 535px;
+            display: block;
+        }
+        #game-display canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Loading overlay */
+        .game-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #1a1008;
+            color: rgba(240, 224, 192, 0.7);
+            font-size: 13px;
+            font-style: italic;
+            gap: 16px;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        .game-loading.hidden { opacity: 0; pointer-events: none; }
+
+        .loading-spinner {
+            width: 28px;
+            height: 28px;
+            border: 2px solid rgba(176, 90, 60, 0.2);
+            border-top-color: #b05a3c;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .game-note {
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--color-text-light);
+            font-style: italic;
+            opacity: 0.7;
+        }
+
+        /* ── How to play ── */
+        .how-to-play {
+            border-top: 1px solid var(--color-border);
+            padding-top: 32px;
+            margin-bottom: 48px;
+        }
+        .how-to-play h3 {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--color-text-light);
+            margin-bottom: 18px;
+        }
+        .how-steps {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px 40px;
+        }
+        .how-step {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+        .step-num {
+            font-size: 11px;
+            font-weight: 700;
+            color: #b05a3c;
+            min-width: 18px;
+            padding-top: 2px;
+        }
+        .step-text {
+            font-size: 13.5px;
+            color: var(--color-text-light);
+            line-height: 1.6;
+        }
+        .step-text strong {
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        /* ── Credits ── */
+        .ff-credits {
+            font-size: 12.5px;
+            color: var(--color-text-light);
+            font-style: italic;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-border);
+            opacity: 0.75;
+        }
+
+        @media (max-width: 768px) {
+            .ff-page { padding: 80px 20px 64px; }
+            .ff-header h1 { font-size: 30px; }
+            #game-display { height: 420px; }
+            .game-outer { width: 100%; }
+            .how-steps { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="index.html" class="logo">Atharv Gupta</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="experience.html">Experience</a></li>
+            <li><a href="writing.html">Writing</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="projects.html" class="active">Projects</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="ff-page">
+
+    <header class="ff-header fade-in">
+        <p class="ff-eyebrow"><a href="projects.html" style="color:inherit;text-decoration:none;">Projects</a> &nbsp;/&nbsp; Flamin' Fingerz</p>
+        <h1>Flamin' <em>Fingerz</em></h1>
+        <p class="ff-lede">A two-player typing speed game built in Java Swing. Pick a difficulty level, enter player names, hit Start, and type as fast as you can. Tracks WPM, accuracy, and time — and tells you who won.</p>
+        <p class="ff-meta">Built by Atharv Gupta, Paarth Jain &amp; Joshua Sahaya Arul &nbsp;·&nbsp; Summer CS, 2016</p>
+    </header>
+
+    <!-- Game -->
+    <div class="game-section fade-in">
+        <p class="game-label">Play</p>
+        <div class="game-outer">
+            <div id="game-display"></div>
+            <div class="game-loading" id="loading">
+                <div class="loading-spinner"></div>
+                <span>Loading Java runtime&hellip;</span>
+            </div>
+        </div>
+        <p class="game-note">Runs via CheerpJ (Java &rarr; WebAssembly). First load takes ~10 seconds.</p>
+    </div>
+
+    <!-- How to play -->
+    <div class="how-to-play fade-in">
+        <h3>How to play</h3>
+        <div class="how-steps">
+            <div class="how-step">
+                <span class="step-num">1</span>
+                <span class="step-text"><strong>Pick a level</strong> — Level 1 is easy, Level 3 throws Latin and high-level literature at you. Test mode is short, good for a quick go.</span>
+            </div>
+            <div class="how-step">
+                <span class="step-num">2</span>
+                <span class="step-text"><strong>Choose 1 or 2 players</strong> and optionally enter names. In 2-player mode, Player 2 gets the same paragraph after Player 1 finishes.</span>
+            </div>
+            <div class="how-step">
+                <span class="step-num">3</span>
+                <span class="step-text"><strong>Click Begin</strong>, then click <strong>Start</strong> on the game board. A READY / SET / GO countdown kicks off — start typing immediately.</span>
+            </div>
+            <div class="how-step">
+                <span class="step-num">4</span>
+                <span class="step-text"><strong>Type each word and hit space</strong> to advance. A red flash means a wrong word — fix it. When the paragraph is done, hit <strong>Scores</strong> to see results.</span>
+            </div>
+        </div>
+    </div>
+
+    <p class="ff-credits fade-in">Built in jGRASP for a high school computer science final project. Java 8, Swing, javax.sound. No libraries beyond the JDK.</p>
+
+</div>
+
+<script>
+(async function () {
+    const loading = document.getElementById('loading');
+    try {
+        await cheerpjInit({
+            javaProperties: ['user.dir=/app/flaming-fingers']
+        });
+        cheerpjCreateDisplay(616, 535, document.getElementById('game-display'));
+        loading.classList.add('hidden');
+        await cheerpjRunMain('Driver', '/app/flaming-fingers/');
+    } catch (e) {
+        loading.querySelector('div').style.display = 'none';
+        loading.querySelector('span').textContent = 'Could not load game. Try a desktop browser.';
+    }
+})();
+
+window.addEventListener('load', () => {
+    document.querySelectorAll('.fade-in').forEach((el, i) => {
+        setTimeout(() => {
+            el.style.opacity = '0';
+            el.style.animation = 'fadeInUp 0.6s ease forwards';
+        }, i * 100);
+    });
+});
+</script>
+</body>
+</html>

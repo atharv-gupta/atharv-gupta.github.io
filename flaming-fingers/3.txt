@@ -1,0 +1,17 @@
+1
+The SourceDataLine interface provides a method for writing audio data to the data line's buffer. Applications that play or mix audio should write data to the source data line quickly enough to keep the buffer from underflowing (emptying). This data type allows one to present audio in a java program. 
+2
+The default transform maps the user space coordinate system such that the origin maps to the upper left hand corner of the target  device with increasing X coordinates extending to the right and increasing Y coordinates extending downward. This is the standard for almost all images and Graphics objects. 
+3
+Surely he took up our pain and bore our suffering, yet we considered him punished by God, stricken by him, and afflicted.  But he was pierced for our transgressions, he was crushed for our iniquities; the punishment that brought us peace was on him, and by his wounds we are healed.
+4
+If an ab ad is on, my Ma or Pa go do it, as so to be up by us. My Ma is bi, my Pa, "Oh?", he is so up on it, to us "Uh, no!", we go "Ew!". "Is it in, Pa?" "Er, no, Ma" "Is it up? "Eh..." "Ow, no go!" "Um...if so?" "Oh, my...hi!" "Ah, it is on" "Go Pa, do it!" "Oh...No!"
+5
+The manifestation of the existential paradigm is infinitesimally larger than the exponentially evolved humanistic peon; indeed this precept is fundamentally beyond the cognisance of any finite mind.
+6
+Mauris vitae  Cras id erat dapibus, vestibulum ligula a, elementum erat. Sed non quam odio. Duis egestas velit a felis ornare, a lacinia sem pretium. Mauris pulvinar odio et ex interdum posuere. In molestie orci felis, eget efficitur mauris rhoncus id. Aenean elementum ante et nisl rhoncus sodales. 
+7
+Histamine is synthesized from L-histidine exclusively by histidine decarboxylase, an enzyme expressed in CNS neurons, gastric mucosa parietal cells, mast cells, and other cells throughout the body. Through the receptor, histamine is involved in cell proliferation, hematopoiesis, embryonic development, regeneration.
+8
+To be, or not to be- that is the question: Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune Or to take arms against a sea of troubles, And by opposing end them. To die- to sleep- No more; and by a sleep to say we end The heartache, and the thousand natural shocks.
+9

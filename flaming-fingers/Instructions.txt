@@ -1,0 +1,41 @@
+Flamin' Fingerz Instructions (FINAL PROJECT)
+
+Atharv Gupta, Josh Sahaya Arul, Paarth Jain
+
+How to run TypeRacer
+1.	Open JGrasp
+2.	Find the "Final Project" folder
+3.	Compile and run the Driver.java (NOT GameDriver)
+4.	Enjoy!
+
+How to play TypeRacer
+1.	Pick level 1, 2 or 3
+   a. Level 1 features easier paragraphs, with shorter words, simpler sentence structure and punctuation, 
+      and easier vocabulary
+   b.	Level 2 displays slightly harder passages, taken from major authors, textbooks, and works of literature. 
+      There is significantly harder vocabulary and sentence structure
+   c.	Level 3 returns the hardest passages of all that will really trip your typing fingers up! Watch out for 
+      paragraphs in latin, paragraphs with weird vocabulary and diverse punctuation, and paragraphs from 
+      high-level literature and textbooks. 
+   d. Use the Test Level mode to try out all the features with a short and simple sentence. Perfect for grading ;) 
+      
+2.	Enter a number of players
+
+3.	Enter player names (optional)
+
+4.	Click begin! (takes you to Gameboard)
+
+5.	Click start and get typing!
+
+6.	If you’re in 2 player mode, after player 1 finishes, the second player will get a reset frame 
+   with the same paragraph
+   
+7.	If you need to go or need to take a break, leave the game by pressing the home button, which will take 
+   you to the title screen
+   
+8.	When done, click the scores button to view your statistics from the round!
+
+                                                     HAVE FUN!
+
+
+

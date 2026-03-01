@@ -1,0 +1,116 @@
+Paragraphs
+
+Level 1:
+
+Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph 
+is a group of at least five sentences, a paragraph is half a page long, etc. In reality, though, the unity and 
+coherence of ideas among sentences is what constitutes a paragraph.
+
+
+The flower was so well cared for, that it had soon germinated, giving birth to others, and these other flowers 
+spread onto other flowers. Before long, the whole moon was completely covered with flowers. That's why, 
+whenever the little boy's flowers open up, for a few minutes the moon takes on a soft red sheen. 
+
+They worked for hours with curved knives and eventually freed her. When she was free, the divers say she swam 
+in what seemed like joyous circles. She then came back to each and every diver, one at a time, and nudged them,
+pushed them gently around - she thanked them. 
+
+Ben let his pet Ted in the bed. The bed is red. Then Ted fell off the bed. He can get up. "Tell him to 
+get up", Ben. Ben yells, "Get up pet!" Then the pet left. Ben fell off the bed and hit his head. “Oh man!” I 
+feel like lead! “I’ll feel better soon,” he said. 
+
+Dan is a man that had a cat. The cat is Sam. Dan is mad. Dan is mad at Sam. Dan had a hat. And Sam sat on 
+the hat. The cat is sad. Dan is sad. Dan is mad that he had the hat that the cat sat on so he ordered a 
+bat to scare the cat onto a mat. 
+
+I take care of the puppy with my grandma. Grandma shows me how to care for the puppy. I put water in a 
+dish and food in a pan. The puppy likes the water and the dog food. The puppy plays with me inside and 
+outside the house. 
+
+Mother washed the cherries, and then she put them in the crust to bake. When it was baked, she put the 
+pie by the window to cool off. She opened the window. I was eating my breakfast. I saw the blackbird fly 
+around the tree. There were no cherries on the tree. I saw the blackbird fly in through the window to sit by 
+me. He flew over to the window by the the pie. 
+
+Saturday, a child's accidental encounter with Harambe, one of the Cincinnati Zoo's silverback gorillas, ended 
+with the animal being shot. While controversy continues to brew about the child's mother, Michelle Gregg and 
+the zoo's decision to shoot – rather than tranquilize – the animal, there's more to learn about Harambe and his 
+species. 
+
+
+Level 2: 
+
+An ice age is a time period when the temperature of the Earth’s surface and atmosphere is greatly reduced so 
+that there is a presence or expansion of continental ice sheets, polar ice sheets and alpine glaciers in the 
+southern and northern hemispheres. The period between ice ages are known as the “Interglacial” period. 
+
+Once there was a war between the Roman people and the Etruscans who lived in the towns on the other side 
+of the Tiber River. Porsena, the King of the Etruscans, raised a great army and marched toward Rome. The city
+had never been in so great danger. No one knew what to do and all seemed lost.
+
+It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, 
+it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of 
+Darkness, it was the spring of hope, and it was the winter of despair. 
+
+Daring burglaries by armed men, and highway robberies, took place in the capital itself every night; families 
+were publicly cautioned not to go out of town without removing their furniture to upholsterers' warehouses 
+for security; the highwayman in the dark was a City tradesman in the light.
+
+In 1963, I assigned the name "quark" to the fundamental constituents of the nucleon. Then, in one of my 
+occasional perusals of Finnegans Wake, by James Joyce, I came across the word "quark" in the phrase "Three 
+quarks for Muster Mark." The word "quark" (meaning, for one thing, the cry of a gull) was clearly intended to rhyme 
+with "Mark," as well as "bark" and other such words.
+
+Eid al-Fitr (“Feast of the Breaking of the Fast”) is one of the most important festivals of Muslims. It is a 
+feast that celebrates the end of the fasting during the Ramadan. During the holy month of Ramadan, Muslims 
+fast from dawn to sunset and they eat and drink only after sunset. Fasting during the month of Ramadan is 
+one of the acts that should be mandatorily observed by Muslims during their life. 
+
+“Hello babies. Welcome to Earth. It’s hot in the summer and cold in the winter. It’s round and wet and crowded. 
+On the outside, babies, you’ve got a hundred years here. There’s only one rule that I know of, babies “Dang 
+it, you’ve got to be kind.” 
+
+“I must not fear. Fear is the mind-killer. Fear is the little-death that brings total obliteration. I will 
+face my fear. I will permit it to pass over me and through me. And when it has gone past I will turn the inner 
+eye to see its path. Where the fear has gone there will be nothing. Only I will remain.”
+
+
+Level 3: 
+The SourceDataLine interface provides a method for writing audio data to the data line's buffer. Applications 
+that play or mix audio should write data to the source data line quickly enough to keep the buffer from 
+underflowing (emptying). This data type allows one to present audio in a java program. 
+
+The default transform maps the user space coordinate system to screen coordinates such that the origin maps 
+to the upper left hand corner of the target  device with increasing X coordinates extending to the right and 
+increasing Y coordinates extending downward. This is the standard for almost all Java images and Graphics objects. 
+
+Surely he took up our pain and bore our suffering, yet we considered him punished by God, stricken by him, 
+and afflicted.  But he was pierced for our transgressions, he was crushed for our iniquities; the punishment 
+that brought us peace was on him, and by his wounds we are healed.
+
+If an ab ad is on, my Ma or Pa go do it, as so to be up by us. My Ma is bi, my Pa, "Oh?", he is so up on it, 
+to us "Uh, no!", we go "Ew!". "Is it in, Pa?" "Er, no, Ma" "Is it up?” "Eh..." "Ow, no go!" "Um...if so?" "Oh,
+my...hi!" "Ah, it is on" "Go Pa, do it!" "Oh...No!"
+
+The manifestation of the existential paradigm is infinitesimally larger than the exponentially evolved humanistic
+peon; indeed this precept is fundamentally beyond the cognisance of any finite mind.
+
+Mauris vitae  Cras id erat dapibus, vestibulum ligula a, elementum erat. Sed non quam odio. Duis egestas 
+velit a felis ornare, a lacinia sem pretium. Mauris pulvinar odio et ex interdum posuere. In molestie orci 
+felis, eget efficitur mauris rhoncus id. Aenean elementum ante et nisl rhoncus sodales. 
+
+Histamine, a natural body constituent, is synthesized from L-histidine exclusively by histidine decarboxylase, 
+an enzyme expressed in central nervous system (CNS) neurons, gastric mucosa parietal cells, mast cells, basophils,
+and other cells throughout the body. Through the receptor, histamine is involved in cell proliferation 
+and differentiation, hematopoiesis, embryonic development, regeneration.
+
+To be, or not to be- that is the question: Whether 'tis nobler in the mind to suffer The slings 
+and arrows of outrageous fortune Or to take arms against a sea of troubles, And by opposing end them. 
+To die- to sleep- No more; and by a sleep to say we end The heartache, and the thousand natural shocks.
+
+Level 4:
+
+The quick brown fox jumps over the lazy dog. 
+
+
+
