@@ -5,9 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Writing - Atharv Gupta</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .wip-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 88px 48px 80px;
+            max-width: 680px;
+        }
+        .wip-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: var(--color-text-light);
+            margin-bottom: 20px;
+        }
+        .wip-name {
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--color-dark-brown);
+            letter-spacing: -0.5px;
+            margin: 0 0 24px;
+            line-height: 1.1;
+        }
+        .wip-note {
+            font-size: 16px;
+            color: var(--color-text-light);
+            font-style: italic;
+            line-height: 1.7;
+            margin: 0 0 32px;
+        }
+        .wip-link {
+            font-size: 14px;
+            color: var(--color-dark-olive);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(107,120,71,0.3);
+            padding-bottom: 1px;
+            transition: border-color 0.2s;
+        }
+        .wip-link:hover { border-color: var(--color-dark-olive); }
+        @media (max-width: 768px) {
+            .wip-container { padding: 76px 20px 60px; }
+            .wip-name { font-size: 36px; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="main-nav">
         <div class="nav-container">
             <a href="index.html" class="logo">Atharv Gupta</a>
@@ -20,55 +64,22 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="main-container">
-        <h1 class="fade-in">Writing</h1>
-
-        <!-- Featured Story -->
-        <section class="writing-section fade-in">
-            <h2>Featured</h2>
-
-            <a href="https://www.alsoblogposts.com/p/what-is-government" target="_blank" class="featured-card">
-                <div class="featured-label">Narrative Essay</div>
-                <h3 class="featured-title">What is Government?</h3>
-                <p class="featured-subtitle">A story about founders, bureaucrats, and the messy space in between</p>
-                <div class="featured-excerpt">
-                    <p>Phil Stack left SpaceX with a materials science degree and a conviction that edge-deployable power systems could reshape how the military operates. What he didn't have was a map for selling to the Pentagon. Based on 20+ interviews with venture capitalists, founders, and government officials, this narrative explores four fundamental truths about what it really means when your customer is the U.S. government.</p>
-                </div>
-                <div class="featured-themes">
-                    <span class="theme-tag">Government &amp; Tech</span>
-                    <span class="theme-tag">Defense Innovation</span>
-                    <span class="theme-tag">Venture Capital</span>
-                    <span class="theme-tag">Procurement</span>
-                </div>
-                <span class="featured-cta">Read the full story &rarr;</span>
-            </a>
-        </section>
-
-        <!-- Ongoing -->
-        <section class="writing-section fade-in">
-            <h2>Ongoing</h2>
-
-            <div class="writing-item">
-                <h3><a href="https://thekino.substack.com/" target="_blank">THE KINO</a></h3>
-                <p class="meta">Film Newsletter</p>
-                <p>A film newsletter for 200+ subscribers with 80+ posts that have accumulated 50,000+ views. Exploring cinema, storytelling, and the intersection of film with culture and technology.</p>
-            </div>
-        </section>
+    <div class="wip-container fade-in">
+        <p class="wip-label">Work in progress</p>
+        <h1 class="wip-name">Writing</h1>
+        <p class="wip-note">This page is being updated. In the meantime, feel free to get in touch.</p>
+        <a href="contact.html" class="wip-link">Contact &rarr;</a>
     </div>
 
     <script>
-        // Add fade-in animation on load
         window.addEventListener('load', () => {
-            const elements = document.querySelectorAll('.fade-in');
-            elements.forEach((el, index) => {
+            document.querySelectorAll('.fade-in').forEach((el, i) => {
                 setTimeout(() => {
                     el.style.opacity = '0';
                     el.style.animation = 'fadeInUp 0.6s ease forwards';
-                }, index * 100);
+                }, i * 100);
             });
         });
     </script>
 </body>
 </html>
-

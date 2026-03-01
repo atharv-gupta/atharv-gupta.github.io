@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing - Atharv Gupta</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Atharv Gupta</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="writing.html" class="active">Writing</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <h1 class="fade-in">Writing</h1>
+
+        <!-- Featured Story -->
+        <section class="writing-section fade-in">
+            <h2>Featured</h2>
+
+            <a href="https://www.alsoblogposts.com/p/what-is-government" target="_blank" class="featured-card">
+                <div class="featured-label">Narrative Essay</div>
+                <h3 class="featured-title">What is Government?</h3>
+                <p class="featured-subtitle">A story about founders, bureaucrats, and the messy space in between</p>
+                <div class="featured-excerpt">
+                    <p>Phil Stack left SpaceX with a materials science degree and a conviction that edge-deployable power systems could reshape how the military operates. What he didn't have was a map for selling to the Pentagon. Based on 20+ interviews with venture capitalists, founders, and government officials, this narrative explores four fundamental truths about what it really means when your customer is the U.S. government.</p>
+                </div>
+                <div class="featured-themes">
+                    <span class="theme-tag">Government &amp; Tech</span>
+                    <span class="theme-tag">Defense Innovation</span>
+                    <span class="theme-tag">Venture Capital</span>
+                    <span class="theme-tag">Procurement</span>
+                </div>
+                <span class="featured-cta">Read the full story &rarr;</span>
+            </a>
+        </section>
+
+        <!-- Ongoing -->
+        <section class="writing-section fade-in">
+            <h2>Ongoing</h2>
+
+            <div class="writing-item">
+                <h3><a href="https://thekino.substack.com/" target="_blank">THE KINO</a></h3>
+                <p class="meta">Film Newsletter</p>
+                <p>A film newsletter for 200+ subscribers with 80+ posts that have accumulated 50,000+ views. Exploring cinema, storytelling, and the intersection of film with culture and technology.</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Add fade-in animation on load
+        window.addEventListener('load', () => {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '0';
+                    el.style.animation = 'fadeInUp 0.6s ease forwards';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
+

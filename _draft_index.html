@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atharv Gupta</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Name Header -->
+        <header class="name-header fade-in">
+            <h1>Atharv Gupta</h1>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="home-nav fade-in">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="writing.html">Writing</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Photo and Bio Side by Side -->
+        <div class="bio-content fade-in">
+            <div class="photo-wrapper">
+                <img src="photo.jpg" alt="Atharv Gupta" class="profile-photo">
+            </div>
+            
+            <div class="bio-text">
+                <p>I'm <strong>Atharv</strong>, a Rhodes Scholar passionate about tech and government. I've worked at the World Bank, State Department, venture capital firms, Fortune 200 multinationals, and Oxford & Georgetown University thinking about how we earn paychecks, make payments, build businesses, and grow nations.</p>
+                
+                <p>I'm also finishing a historical fiction novel set in 18th century Bengal, I write about movies, and I play jazz trumpet.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add fade-in animation on load
+        window.addEventListener('load', () => {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '0';
+                    el.style.animation = 'fadeInUp 0.6s ease forwards';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

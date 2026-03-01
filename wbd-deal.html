@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Debt Mountain — Atharv Gupta</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .sim-page {
+            max-width: 1480px;
+            margin: 0 auto;
+            padding: 88px 48px 80px;
+        }
+
+        /* ── Header ── */
+        .sim-header {
+            margin-bottom: 52px;
+        }
+        .sim-header h1 {
+            font-size: 46px;
+            font-weight: 300;
+            color: var(--color-dark-brown);
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+        .sim-header h1 em {
+            font-style: normal;
+            color: var(--color-dark-olive);
+        }
+        .sim-header .lede {
+            font-size: 17px;
+            color: var(--color-text-light);
+            font-style: italic;
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .sim-header .context-line {
+            font-size: 13px;
+            color: var(--color-text-light);
+            margin: 0;
+            padding: 10px 14px;
+            border-left: 2px solid rgba(157, 138, 111, 0.5);
+            line-height: 1.6;
+        }
+        .context-line strong { color: var(--color-dark-brown); font-weight: 600; }
+        .context-line .red   { color: #b05a3c; font-weight: 600; }
+
+        /* ── Grid ── */
+        .sim-grid {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 72px;
+            align-items: start;
+        }
+
+        /* ── Left: sliders ── */
+        .sliders-col {}
+
+        .slider-block {
+            padding: 22px 0;
+            border-top: 1px solid var(--color-border);
+        }
+        .slider-block:last-child {
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .slider-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+        }
+        .slider-name {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-text-light);
+        }
+        .slider-num {
+            font-size: 28px;
+            font-weight: 300;
+            font-family: 'Georgia', serif;
+            color: var(--color-dark-brown);
+            letter-spacing: -0.5px;
+        }
+
+        /* Range input */
+        input[type=range] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 2px;
+            border-radius: 1px;
+            outline: none;
+            cursor: pointer;
+            border: none;
+            margin-bottom: 14px;
+            background: linear-gradient(
+                to right,
+                var(--color-olive) 0%,
+                var(--color-olive) var(--fill-pct, 40%),
+                #ddd8cf var(--fill-pct, 40%),
+                #ddd8cf 100%
+            );
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--color-dark-olive);
+            border: 2.5px solid white;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.22);
+            cursor: grab;
+            transition: transform 0.15s ease;
+        }
+        input[type=range]::-webkit-slider-thumb:active {
+            cursor: grabbing;
+            transform: scale(1.25);
+        }
+        input[type=range]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--color-dark-olive);
+            border: 2.5px solid white;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.22);
+            cursor: grab;
+        }
+
+        .slider-desc {
+            font-size: 13.5px;
+            color: var(--color-text-light);
+            line-height: 1.65;
+            margin: 0;
+        }
+        .slider-desc strong {
+            color: var(--color-text);
+            font-weight: 500;
+        }
+        .slider-desc .bad  { color: #b05a3c; font-weight: 500; }
+        .slider-desc .good { color: var(--color-dark-olive); font-weight: 500; }
+
+        /* ── Feasibility pill ── */
+        .feas {
+            display: inline-block;
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            padding: 2px 9px;
+            border-radius: 3px;
+            margin-bottom: 7px;
+        }
+        .feas.green  { background: rgba(107,125,71,0.13);  color: #4e6635; }
+        .feas.yellow { background: rgba(175,140,30,0.13);  color: #7a5c08; }
+        .feas.red    { background: rgba(176,90,60,0.13);   color: #a03020; }
+
+        /* ── Mountain headline ── */
+        .mtn-headline {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--color-text);
+            margin-bottom: 18px;
+            font-style: italic;
+        }
+        .mtn-headline strong {
+            font-style: normal;
+            color: var(--color-dark-brown);
+            font-weight: 500;
+        }
+        .mtn-headline .hl-red    { font-style: normal; color: #b05a3c; font-weight: 500; }
+        .mtn-headline .hl-olive  { font-style: normal; color: #4e6635; font-weight: 500; }
+
+        /* ── Right: visualization ── */
+        .viz-col {
+            position: sticky;
+            top: 88px;
+        }
+
+        /* Mountain */
+        .mountain-wrap {
+            margin-bottom: 28px;
+        }
+        .mountain-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--color-text-light);
+            margin-bottom: 12px;
+        }
+        .mountain-svg {
+            width: 100%;
+            display: block;
+        }
+
+        /* Stats row */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid var(--color-border);
+            margin-bottom: 28px;
+        }
+        .stat-cell {
+            padding: 16px 0 16px 0;
+            border-right: 1px solid var(--color-border);
+            padding-right: 16px;
+            margin-right: 16px;
+        }
+        .stat-cell:last-child {
+            border-right: none;
+            padding-right: 0;
+            margin-right: 0;
+        }
+        .stat-num {
+            font-size: 22px;
+            font-weight: 300;
+            font-family: 'Georgia', serif;
+            color: var(--color-dark-brown);
+            display: block;
+            margin-bottom: 3px;
+            transition: color 0.3s ease;
+        }
+        .stat-num.danger  { color: #b05a3c; }
+        .stat-num.warning { color: #9a7020; }
+        .stat-num.safe    { color: var(--color-dark-olive); }
+        .stat-lbl {
+            font-size: 11px;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        /* Verdict */
+        .verdict {
+            font-size: 15px;
+            color: var(--color-text);
+            line-height: 1.7;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-border);
+        }
+        .verdict-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+        .verdict-tag.bad    { background: rgba(176,90,60,0.1);  color: #b05a3c; }
+        .verdict-tag.ok     { background: rgba(154,112,32,0.1); color: #9a7020; }
+        .verdict-tag.good   { background: rgba(107,125,71,0.1); color: var(--color-dark-olive); }
+        .verdict-body { margin: 0; color: var(--color-text-light); }
+
+        /* ── Methodology box ── */
+        .methodology {
+            margin-top: 72px;
+            padding-top: 32px;
+            border-top: 1px solid var(--color-border);
+        }
+        .method-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: var(--color-text-light);
+            margin-bottom: 18px;
+        }
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px 48px;
+        }
+        .method-block h4 {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--color-dark-brown);
+            margin: 0 0 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+        .method-block p, .method-block li {
+            font-size: 13px;
+            color: var(--color-text-light);
+            line-height: 1.7;
+            margin: 0;
+        }
+        .method-block ul {
+            padding-left: 16px;
+            margin: 0;
+        }
+        .method-block li { margin-bottom: 3px; }
+        .method-note {
+            margin-top: 20px;
+            padding: 12px 16px;
+            background: rgba(157,138,111,0.07);
+            border-left: 2px solid rgba(157,138,111,0.4);
+            font-size: 12.5px;
+            color: var(--color-text-light);
+            line-height: 1.65;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1100px) {
+            .sim-grid { grid-template-columns: 1fr; gap: 48px; }
+            .viz-col  { position: static; }
+            .stats-row { grid-template-columns: repeat(2,1fr); }
+            .stat-cell:nth-child(2) { border-right: none; }
+            .stat-cell:nth-child(3) { border-top: 1px solid var(--color-border); padding-top: 16px; }
+            .stat-cell:nth-child(4) { border-top: 1px solid var(--color-border); border-right: none; padding-top: 16px; }
+        }
+        @media (max-width: 768px) {
+            .sim-page { padding: 76px 20px 60px; }
+            .sim-header h1 { font-size: 32px; }
+            .method-grid { grid-template-columns: 1fr; gap: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="index.html" class="logo">Atharv Gupta</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="experience.html">Experience</a></li>
+            <li><a href="writing.html">Writing</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="sim-page">
+
+    <header class="sim-header fade-in">
+        <h1>The <em>Debt Mountain</em></h1>
+        <p class="lede">Paramount Skydance is buying Warner Bros. Discovery for $110B — $81.6B of which is debt. Drag the sliders to see what it would take to pay it down.</p>
+    </header>
+
+    <div class="sim-grid">
+
+        <!-- LEFT: Sliders -->
+        <div class="sliders-col fade-in">
+
+            <div class="slider-block">
+                <div class="slider-top">
+                    <span class="slider-name">Cable TV decline / year</span>
+                    <span class="slider-num" id="v-cable">5%</span>
+                </div>
+                <input type="range" id="s-cable" min="0" max="15" value="5" step="0.5">
+                <p class="slider-desc" id="d-cable"></p>
+            </div>
+
+            <div class="slider-block">
+                <div class="slider-top">
+                    <span class="slider-name">Streaming subscriber growth / year</span>
+                    <span class="slider-num" id="v-subs">+6%</span>
+                </div>
+                <input type="range" id="s-subs" min="-5" max="20" value="6" step="0.5">
+                <p class="slider-desc" id="d-subs"></p>
+            </div>
+
+            <div class="slider-block">
+                <div class="slider-top">
+                    <span class="slider-name">Avg. price per subscriber increase / year</span>
+                    <span class="slider-num" id="v-arpu">4%</span>
+                </div>
+                <input type="range" id="s-arpu" min="0" max="12" value="4" step="0.5">
+                <p class="slider-desc" id="d-arpu"></p>
+            </div>
+
+            <div class="slider-block">
+                <div class="slider-top">
+                    <span class="slider-name">Cost cuts (% of $42B cost base)</span>
+                    <span class="slider-num" id="v-cost">5%</span>
+                </div>
+                <input type="range" id="s-cost" min="0" max="25" value="5" step="0.5">
+                <p class="slider-desc" id="d-cost"></p>
+            </div>
+
+        </div>
+
+        <!-- RIGHT: Visualization -->
+        <div class="viz-col fade-in">
+
+            <div class="mountain-wrap">
+                <p class="mtn-headline" id="mtn-headline">Move the sliders to see how the debt mountain changes.</p>
+                <div class="mountain-title">Leverage ratio over time &nbsp;(Net Debt ÷ EBITDA)</div>
+                <svg class="mountain-svg" viewBox="0 0 620 260" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Gradient: rust above 3× target, olive below -->
+                        <linearGradient id="mtnGrad" x1="0" y1="0" x2="0" y2="1"
+                                        gradientUnits="userSpaceOnUse"
+                                        y1="18" y2="198">
+                            <stop offset="0%"    stop-color="#a0523a" stop-opacity="0.78"/>
+                            <stop offset="67%"   stop-color="#b05a3c" stop-opacity="0.62"/>
+                            <stop offset="67%"   stop-color="#7a8a5a" stop-opacity="0.52"/>
+                            <stop offset="100%"  stop-color="#7a8a5a" stop-opacity="0.12"/>
+                        </linearGradient>
+                        <!-- Subtle shadow/depth at the top of mountain -->
+                        <filter id="mtnBlur">
+                            <feGaussianBlur stdDeviation="1.5"/>
+                        </filter>
+                    </defs>
+
+                    <!-- Background -->
+                    <rect width="620" height="260" fill="rgba(250,248,244,0.0)"/>
+
+                    <!-- Y-axis reference labels -->
+                    <text x="14" y="24"  font-size="10" fill="#9a9080" font-family="Georgia,serif">9×</text>
+                    <text x="14" y="78"  font-size="10" fill="#9a9080" font-family="Georgia,serif">6×</text>
+                    <text x="14" y="132" font-size="10" fill="#9a9080" font-family="Georgia,serif">3×</text>
+                    <text x="14" y="198" font-size="10" fill="#9a9080" font-family="Georgia,serif">0×</text>
+
+                    <!-- Horizontal grid lines (subtle) -->
+                    <line x1="34" y1="18"  x2="608" y2="18"  stroke="#e8e2d8" stroke-width="0.5"/>
+                    <line x1="34" y1="72"  x2="608" y2="72"  stroke="#e8e2d8" stroke-width="0.5"/>
+                    <line x1="34" y1="126" x2="608" y2="126" stroke="#e8e2d8" stroke-width="0.5"/>
+                    <line x1="34" y1="180" x2="608" y2="180" stroke="#e8e2d8" stroke-width="0.5"/>
+
+                    <!-- 3× target line (prominent) -->
+                    <line x1="34" y1="126" x2="608" y2="126"
+                          stroke="#7a8a5a" stroke-width="1.2"
+                          stroke-dasharray="5,4" opacity="0.7"/>
+                    <text x="612" y="130" font-size="10" fill="#7a8a5a"
+                          font-family="Georgia,serif" font-style="italic">3×</text>
+
+                    <!-- Mountain fill (animated via JS) -->
+                    <path id="mtn-fill" fill="url(#mtnGrad)"/>
+
+                    <!-- Mountain top line (crisp edge) -->
+                    <path id="mtn-line" fill="none" stroke="rgba(120,80,55,0.3)" stroke-width="1"/>
+
+                    <!-- Day-1 label -->
+                    <text id="lbl-day1" x="36" y="0" font-size="10" fill="#b05a3c"
+                          font-family="Georgia,serif" font-style="italic">Day 1: 6.8×</text>
+
+                    <!-- X-axis year labels -->
+                    <text x="36"  y="218" font-size="10" fill="#b8b0a0" font-family="Georgia,serif">Today</text>
+                    <text x="91"  y="218" font-size="10" fill="#b8b0a0" font-family="Georgia,serif" text-anchor="middle">Y1</text>
+                    <text x="147" y="218" font-size="10" fill="#b8b0a0" font-family="Georgia,serif" text-anchor="middle">Y2</text>
+                    <text x="203" y="218" font-size="10" fill="#b8b0a0" font-family="Georgia,serif" text-anchor="middle">Y3</text>
+                    <text x="259" y="218" font-size="10" fill="#b8b0a0" font-family="Georgia,serif" text-anchor="middle">Y4</text>
+                    <text x="315" y="218" font-size="10" fill="#b8b0a0" font-family="Georgia,serif" text-anchor="middle">Y5</text>
+                    <text x="371" y="218" font-size="10" fill="#b8b0a0" font-family="Georgia,serif" text-anchor="middle">Y6</text>
+                    <text x="427" y="218" font-size="10" fill="#b8b0a0" font-family="Georgia,serif" text-anchor="middle">Y7</text>
+                    <text x="483" y="218" font-size="10" fill="#b8b0a0" font-family="Georgia,serif" text-anchor="middle">Y8</text>
+                    <text x="539" y="218" font-size="10" fill="#b8b0a0" font-family="Georgia,serif" text-anchor="middle">Y9</text>
+                    <text x="595" y="218" font-size="10" fill="#b8b0a0" font-family="Georgia,serif" text-anchor="middle">Y10</text>
+
+                    <!-- Baseline -->
+                    <line x1="34" y1="198" x2="608" y2="198" stroke="#c8c0b0" stroke-width="0.8"/>
+                </svg>
+            </div>
+
+            <!-- Stats row -->
+            <div class="stats-row">
+                <div class="stat-cell">
+                    <span class="stat-num" id="st-ebitda">—</span>
+                    <span class="stat-lbl">Year 1 EBITDA</span>
+                </div>
+                <div class="stat-cell">
+                    <span class="stat-num danger" id="st-interest">$5.7B</span>
+                    <span class="stat-lbl">Interest expense</span>
+                </div>
+                <div class="stat-cell">
+                    <span class="stat-num" id="st-fcf">—</span>
+                    <span class="stat-lbl">Free cash flow</span>
+                </div>
+                <div class="stat-cell">
+                    <span class="stat-num" id="st-3x">—</span>
+                    <span class="stat-lbl">Reach 3× by</span>
+                </div>
+            </div>
+
+            <!-- Verdict -->
+            <div class="verdict">
+                <span class="verdict-tag bad" id="vtag">Unsustainable</span>
+                <p class="verdict-body" id="vbody">Move the sliders to explore what would need to be true.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Methodology -->
+    <div class="methodology fade-in">
+        <p class="method-label">Methodology &amp; Assumptions</p>
+        <div class="method-grid">
+            <div class="method-block">
+                <h4>Starting Point</h4>
+                <ul>
+                    <li><strong>Day-1 debt:</strong> $81.6B — WBD's existing $47.6B net debt plus $34B from the Skydance deal structure</li>
+                    <li><strong>Interest rate:</strong> 7% blended (WBD's weighted average cost of debt per FY2024 10-K)</li>
+                    <li><strong>Starting EBITDA:</strong> ~$12B (WBD FY2024 adjusted EBITDA; Paramount Skydance added at closing)</li>
+                    <li><strong>Capex:</strong> $2B/year, held flat</li>
+                    <li><strong>Tax rate:</strong> 15% on pretax income</li>
+                </ul>
+            </div>
+            <div class="method-block">
+                <h4>Revenue Model</h4>
+                <ul>
+                    <li><strong>Streaming:</strong> 196M combined subscribers (Max + Paramount+) at a blended avg. of $7.76/mo — the average across ad-supported (~$3–5), standard (~$10), and premium (~$16) tiers</li>
+                    <li><strong>Streaming margin:</strong> 7% contribution margin, consistent with Max's reported trajectory</li>
+                    <li><strong>Linear / cable:</strong> $11.5B combined annual EBITDA from networks, declining each year at the rate set by the slider</li>
+                    <li>Cost savings phase in over 3 years (⅓ in Y1, ⅔ in Y2, full in Y3)</li>
+                </ul>
+            </div>
+            <div class="method-block">
+                <h4>Cost Structure</h4>
+                <ul>
+                    <li><strong>Total cost base:</strong> ~$42B combined (WBD FY2024 10-K costs of revenues + SG&amp;A)</li>
+                    <li><strong>Labor share:</strong> ~25% of total costs — derived from WBD's SG&amp;A of $9.3B minus $2.2B advertising (Note 2), leaving ~$7.1B in employee costs; PSKY estimated similarly</li>
+                    <li><strong>Non-labor 75%:</strong> content acquisition and production, sports rights, licensing, technology platforms, real estate, and distribution</li>
+                    <li><strong>Cost per employee:</strong> $200K all-in (salary + benefits + equity)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="method-note">
+            <strong>Sources:</strong> WBD FY2024 Annual Report (10-K filed Feb 2025); Skydance merger proxy and press releases; Paramount Global FY2024 10-K. This is a simplified illustrative model — it does not account for refinancing risk, covenants, asset sales, working capital changes, or deal close timing. Real outcomes will differ. <strong>Not investment advice.</strong>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// ── Constants ──────────────────────────────────────────────────────────────
+const STARTING_SUBS   = 196;
+const BASE_ARPU       = 7.76;
+const COST_RATIO      = 0.93;
+const WBD_NON_DTC     = 8355;
+const PSKY_NON_STREAM = 3118;
+const COMBINED_COSTS  = 42000;
+const EMPLOYEES       = 55000;
+const COST_PER_HEAD   = 200000;
+// WBD 10-K FY2024: SG&A $9.3B minus advertising $2.2B = ~$7.1B employee costs for WBD.
+// PSKY ~22K employees at $200K = ~$4.4B. Combined labor ~$11.5B / $42B total ≈ 25-27%.
+const LABOR_SHARE     = 0.25;
+const DAY1_DEBT       = 81600;
+const INTEREST_RATE   = 0.07;
+const CAPEX           = 2000;
+const TAX_RATE        = 0.15;
+
+// ── SVG layout constants ────────────────────────────────────────────────────
+const C = {
+    x0: 36, xN: 608,    // left and right x edges
+    top: 18, base: 198, // chart top and baseline y
+    maxLev: 9,
+    years: 11,          // Year 0 through Year 10
+};
+C.chartW = C.xN - C.x0;
+C.chartH = C.base - C.top;
+C.dx     = C.chartW / (C.years - 1);
+
+function levToY(lev) {
+    return C.top + (1 - Math.min(lev, C.maxLev) / C.maxLev) * C.chartH;
+}
+function xForYr(yr) {
+    return C.x0 + yr * C.dx;
+}
+
+// ── Financial model ─────────────────────────────────────────────────────────
+function runModel(cableD, subG, arpuG, costC) {
+    const cD = cableD / 100, sG = subG / 100, aG = arpuG / 100;
+    const fullSavings = COMBINED_COSTS * (costC / 100);
+    let debt = DAY1_DEBT;
+    const levs = [DAY1_DEBT / 12000]; // Year 0 = day-1 leverage (approx $12B EBITDA)
+    let hitThreeX = null;
+    const yr1 = {};
+
+    for (let yr = 1; yr <= 10; yr++) {
+        const subs      = STARTING_SUBS * Math.pow(1 + sG, yr);
+        const arpu      = BASE_ARPU     * Math.pow(1 + aG, yr);
+        const streamEB  = subs * arpu * 12 * (1 - COST_RATIO);
+        const nsEB      = (WBD_NON_DTC + PSKY_NON_STREAM) * Math.pow(1 - cD, yr);
+        const savings   = fullSavings * Math.min(yr / 3, 1);
+        const ebitda    = streamEB + nsEB + savings;
+        const interest  = debt * INTEREST_RATE;
+        const pretax    = ebitda - interest - CAPEX;
+        const taxes     = Math.max(0, pretax) * TAX_RATE;
+        const fcf       = pretax - taxes;
+        debt            = Math.max(0, debt - Math.max(0, fcf));
+        const lev       = ebitda > 0 ? debt / ebitda : 9;
+        levs.push(Math.min(lev, C.maxLev));
+        if (yr === 1) { yr1.ebitda = ebitda; yr1.interest = interest; yr1.fcf = fcf; yr1.lev = lev; }
+        if (lev <= 3 && hitThreeX === null) hitThreeX = yr;
+    }
+    return { levs, yr1, hitThreeX };
+}
+
+// ── Mountain path ────────────────────────────────────────────────────────────
+function makePath(levs) {
+    const pts = levs.map((lev, yr) => ({ x: xForYr(yr), y: levToY(lev) }));
+    // Mountain fill: from baseline up through the leverage curve
+    let top = '';
+    for (let i = 0; i < pts.length - 1; i++) {
+        const p0 = pts[Math.max(0, i - 1)];
+        const p1 = pts[i];
+        const p2 = pts[i + 1];
+        const p3 = pts[Math.min(pts.length - 1, i + 2)];
+        const t = 1 / 3;
+        const cp1x = p1.x + (p2.x - p0.x) * t;
+        const cp1y = p1.y + (p2.y - p0.y) * t;
+        const cp2x = p2.x - (p3.x - p1.x) * t;
+        const cp2y = p2.y - (p3.y - p1.y) * t;
+        if (i === 0) top += `L ${p1.x.toFixed(1)} ${p1.y.toFixed(1)} `;
+        top += `C ${cp1x.toFixed(1)},${cp1y.toFixed(1)} ${cp2x.toFixed(1)},${cp2y.toFixed(1)} ${p2.x.toFixed(1)},${p2.y.toFixed(1)} `;
+    }
+    const fill = `M ${pts[0].x.toFixed(1)} ${C.base} ${top} L ${pts[pts.length-1].x.toFixed(1)} ${C.base} Z`;
+    const line = `M ${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)} ` + top.trim();
+    return { fill, line };
+}
+
+// ── Smooth animation ─────────────────────────────────────────────────────────
+let curLevs = null;
+let tgtLevs = null;
+let rafId   = null;
+
+function animateMountain(newLevs) {
+    tgtLevs = newLevs;
+    if (!curLevs) { curLevs = [...newLevs]; renderMountain(curLevs); return; }
+    if (rafId) cancelAnimationFrame(rafId);
+    function step() {
+        let done = true;
+        for (let i = 0; i < curLevs.length; i++) {
+            const diff = tgtLevs[i] - curLevs[i];
+            if (Math.abs(diff) > 0.004) { curLevs[i] += diff * 0.14; done = false; }
+            else curLevs[i] = tgtLevs[i];
+        }
+        renderMountain(curLevs);
+        if (!done) rafId = requestAnimationFrame(step);
+    }
+    rafId = requestAnimationFrame(step);
+}
+
+function renderMountain(levs) {
+    const { fill, line } = makePath(levs);
+    document.getElementById('mtn-fill').setAttribute('d', fill);
+    document.getElementById('mtn-line').setAttribute('d', line);
+    // Day-1 label floats above the first point
+    const y0 = levToY(levs[0]);
+    const lbl = document.getElementById('lbl-day1');
+    lbl.setAttribute('y', Math.max(14, y0 - 5).toFixed(1));
+}
+
+// ── Formatting ───────────────────────────────────────────────────────────────
+function fmt(n, dec = 1) {
+    const s = n < 0 ? '−' : '';
+    const a = Math.abs(n);
+    return a >= 1000 ? `${s}$${(a/1000).toFixed(dec)}B` : `${s}$${a.toFixed(0)}M`;
+}
+
+// ── Slider track fill ────────────────────────────────────────────────────────
+function fillTrack(el) {
+    const pct = ((+el.value - +el.min) / (+el.max - +el.min)) * 100;
+    el.style.setProperty('--fill-pct', pct + '%');
+}
+
+// ── Feasibility pills ─────────────────────────────────────────────────────────
+function pill(cls, label) {
+    return `<span class="feas ${cls}">${label}</span><br>`;
+}
+
+function cableFeas(r) {
+    if (r <= 2)  return pill('yellow', 'Optimistic');
+    if (r <= 7)  return pill('green',  'Plausible');
+    if (r <= 11) return pill('green',  'Today\'s actual pace');
+    return             pill('yellow', 'Pessimistic');
+}
+function subsFeas(r) {
+    if (r < 0)   return pill('red',    'Subscribers shrinking');
+    if (r <= 3)  return pill('yellow', 'Slow growth');
+    if (r <= 9)  return pill('green',  'Achievable');
+    if (r <= 14) return pill('yellow', 'Very ambitious');
+    return             pill('red',    'Unrealistic at this scale');
+}
+function arpuFeas(r) {
+    if (r <= 2)  return pill('yellow', 'Conservative');
+    if (r <= 7)  return pill('green',  'Achievable');
+    if (r <= 10) return pill('yellow', 'Aggressive — churn risk');
+    return             pill('red',    'Very risky');
+}
+function costFeas(r) {
+    if (r === 0) return pill('red',    'No cuts — unlikely');
+    if (r <= 5)  return pill('green',  'Planned synergies');
+    if (r <= 12) return pill('yellow', 'Major, painful cuts');
+    return             pill('red',    'Business-damaging');
+}
+
+// ── Descriptions ─────────────────────────────────────────────────────────────
+function dCable(r) {
+    const ns0    = WBD_NON_DTC + PSKY_NON_STREAM;
+    const lossY1 = ns0 - ns0 * (1 - r/100);
+    const lossY5 = ns0 - ns0 * Math.pow(1 - r/100, 5);
+    const plain  = r === 0
+        ? 'Cable TV holds flat — unlikely, but possible if die-hard subscribers stay put.'
+        : r <= 4
+        ? `A gentle decline. Cable is actually falling faster than this right now.`
+        : r <= 8
+        ? `A moderate pace. Below WBD's actual 2024 trend, which was 10%.`
+        : r <= 11
+        ? `This matches WBD's real 2024 decline. The primary income source is shrinking fast.`
+        : `Cable is collapsing. The main source of cash to pay interest disappears within a few years.`;
+    return cableFeas(r) + `<strong>Cable income loses ${fmt(lossY1,0)} this year, ${fmt(lossY5,0)} by Year 5.</strong> ${plain}`;
+}
+
+function dSubs(r) {
+    const y5   = STARTING_SUBS * Math.pow(1 + r/100, 5);
+    const y1SE = STARTING_SUBS * (1+r/100) * BASE_ARPU * 12 * (1 - COST_RATIO);
+    const plain = r < 0
+        ? `Subscribers are leaving. Streaming never compensates for the debt.`
+        : r <= 3
+        ? `Slow growth. Streaming adds little when the interest bill is $5.7B a year.`
+        : r <= 9
+        ? `Solid, realistic growth. Even so, streaming profit is only ${fmt(y1SE,1)} in Year 1 — against a $5.7B interest bill.`
+        : r <= 14
+        ? `Very aggressive. Would require outpacing every major streaming service currently operating.`
+        : `Unrealistic. No mature streaming platform sustains this growth rate.`;
+    return subsFeas(r) + `<strong>196M subscribers today → ${y5.toFixed(0)}M in 5 years.</strong> ${plain}`;
+}
+
+function dArpu(r) {
+    const y5   = BASE_ARPU * Math.pow(1 + r/100, 5);
+    // $7.76 is the blended average across all tiers: ad-supported (~$3-5), standard (~$10), premium (~$16)
+    const plain = r === 0
+        ? `No price increases across any tier. All revenue growth has to come from signing up more people.`
+        : r <= 3
+        ? `Small annual increases across tiers — the kind subscribers barely notice. The ad-supported tier barely moves; standard and premium absorb most of it.`
+        : r <= 7
+        ? `Moderate increases, roughly matching what Netflix has done in recent years. Works if content quality justifies it; higher tiers carry the weight.`
+        : r <= 10
+        ? `Aggressive pricing. Standard and premium subscribers — the ones generating real margin — are most likely to cancel or step down to the cheaper ad tier.`
+        : `Very risky. At this pace the blended average nearly doubles in 6 years. Even loyal subscribers start weighing whether it's worth it.`;
+    return arpuFeas(r) + `<strong>Blended avg. across tiers: $7.76/mo today → $${y5.toFixed(2)}/mo in 5 years.</strong> ${plain}`;
+}
+
+function dCost(r) {
+    if (r === 0) {
+        return costFeas(r) + `<strong>No cost cuts assumed.</strong> Every analyst covering this deal expects some cuts. The question is only how many.`;
+    }
+    const savM      = COMBINED_COSTS * (r / 100);
+    const laborSavM = savM * LABOR_SHARE;          // ~25% of costs are employee-related
+    const otherSavM = savM - laborSavM;            // content, licensing, real estate, tech
+    const jobs      = Math.round(laborSavM * 1e6 / COST_PER_HEAD);
+    const pct       = Math.round(jobs / EMPLOYEES * 100);
+    const plain = r <= 5
+        ? `Most of that — ${fmt(otherSavM,1)} — comes from cutting content budgets, renegotiating licensing deals, and consolidating offices and technology. WBD's cost base is 55% content spending; headcount is only one lever. The ${jobs.toLocaleString()} layoffs are the painful but smaller piece.`
+        : r <= 12
+        ? `Headcount reductions (${jobs.toLocaleString()} jobs, ${pct}% of the workforce) account for roughly a quarter of the savings. The other ${fmt(otherSavM,1)} comes from slashing film and TV slates, dropping sports rights, and eliminating redundant platforms — cuts that directly reduce what subscribers can watch.`
+        : `Cuts this deep gut the creative output that makes subscribers pay in the first place. The ${jobs.toLocaleString()} layoffs are only part of the damage — the rest comes from canceling the shows and deals that justify the subscription price.`;
+    return costFeas(r) + `<strong>${fmt(savM,1)} saved per year — including ~${jobs.toLocaleString()} jobs (${pct}% of the combined workforce).</strong> ${plain}`;
+}
+
+// ── Mountain headline ──────────────────────────────────────────────────────────
+function getMtnHeadline(yr1, hitThreeX, levY10) {
+    const intPct = Math.round(yr1.interest / yr1.ebitda * 100);
+    const levRound = levY10.toFixed(1);
+
+    if (!hitThreeX || hitThreeX > 20) {
+        return `In Year 1, <span class="hl-red">${intPct}% of every dollar earned goes straight to interest</span> — not content, not technology, not growth. Under these numbers, the debt mountain <strong>never shrinks to a safe size</strong>.`;
+    }
+    if (hitThreeX > 15) {
+        return `The debt doesn't reach a safe level for <strong>${hitThreeX} years</strong> — well after the streaming era's winners and losers are decided. <span class="hl-red">${intPct} cents of every dollar earned goes to interest</span> the whole time.`;
+    }
+    if (hitThreeX > 10) {
+        return `It takes <strong>${hitThreeX} years</strong> for this debt to feel manageable. That's over a decade of paying <span class="hl-red">${intPct} cents of every dollar earned</span> in interest, with almost nothing left to compete.`;
+    }
+    if (hitThreeX > 5) {
+        return `The debt becomes manageable by <strong>Year ${hitThreeX}</strong>. Until then, <span class="hl-red">${intPct} cents of every dollar earned</span> goes to interest — not content or growth.`;
+    }
+    return `Under these assumptions, the debt reaches a safe level by <strong>Year ${hitThreeX}</strong>. That's still ${hitThreeX} years of <span class="hl-red">${intPct}-cent interest payments</span> on every dollar earned — and requires hitting every single target at once.`;
+}
+
+// ── Main update ───────────────────────────────────────────────────────────────
+function update() {
+    const cable = +document.getElementById('s-cable').value;
+    const subs  = +document.getElementById('s-subs').value;
+    const arpu  = +document.getElementById('s-arpu').value;
+    const cost  = +document.getElementById('s-cost').value;
+
+    // Track fills
+    ['s-cable','s-subs','s-arpu','s-cost'].forEach(id => fillTrack(document.getElementById(id)));
+
+    // Labels
+    document.getElementById('v-cable').textContent = cable + '%';
+    document.getElementById('v-subs').textContent  = (subs >= 0 ? '+' : '') + subs + '%';
+    document.getElementById('v-arpu').textContent  = arpu + '%';
+    document.getElementById('v-cost').textContent  = cost + '%';
+
+    // Descriptions
+    document.getElementById('d-cable').innerHTML = dCable(cable);
+    document.getElementById('d-subs').innerHTML  = dSubs(subs);
+    document.getElementById('d-arpu').innerHTML  = dArpu(arpu);
+    document.getElementById('d-cost').innerHTML  = dCost(cost);
+
+    // Model
+    const { levs, yr1, hitThreeX } = runModel(cable, subs, arpu, cost);
+
+    // Mountain headline
+    document.getElementById('mtn-headline').innerHTML =
+        getMtnHeadline(yr1, hitThreeX, levs[10]);
+
+    // Mountain
+    animateMountain(levs);
+
+    // Stats
+    const levCls = yr1.lev <= 4 ? 'safe' : yr1.lev <= 6 ? 'warning' : 'danger';
+    const fcfCls = yr1.fcf >= 0 ? 'safe' : 'danger';
+
+    document.getElementById('st-ebitda').textContent  = fmt(yr1.ebitda);
+    document.getElementById('st-ebitda').className    = 'stat-num';
+    document.getElementById('st-interest').textContent = fmt(yr1.interest);
+    document.getElementById('st-fcf').textContent     = fmt(yr1.fcf);
+    document.getElementById('st-fcf').className       = 'stat-num ' + fcfCls;
+    document.getElementById('st-3x').textContent      = hitThreeX ? 'Year ' + hitThreeX : '> Year 20';
+    document.getElementById('st-3x').className        = 'stat-num ' +
+        (hitThreeX ? (hitThreeX <= 5 ? 'safe' : hitThreeX <= 10 ? 'warning' : 'danger') : 'danger');
+
+    // Verdict
+    const vtag  = document.getElementById('vtag');
+    const vbody = document.getElementById('vbody');
+    if (hitThreeX && hitThreeX <= 5) {
+        vtag.className = 'verdict-tag good'; vtag.textContent = 'Workable';
+        vbody.textContent = `Under these assumptions, the debt drops to a manageable 3× in Year ${hitThreeX}. Still requires near-flawless execution on every lever at once.`;
+    } else if (hitThreeX && hitThreeX <= 10) {
+        vtag.className = 'verdict-tag ok'; vtag.textContent = 'Tough but possible';
+        vbody.textContent = `3× leverage reached in Year ${hitThreeX}. One bad content year, a recession, or slower streaming growth could push this into distress.`;
+    } else if (hitThreeX) {
+        vtag.className = 'verdict-tag bad'; vtag.textContent = 'Very difficult';
+        vbody.textContent = `Not until Year ${hitThreeX}. For over a decade this company is trapped — unable to invest properly in content or technology while competitors pull ahead.`;
+    } else {
+        vtag.className = 'verdict-tag bad'; vtag.textContent = 'Unsustainable';
+        vbody.textContent = `The debt never gets to 3× in 20 years. Free cash flow can't outrun the interest bill. This ends in restructuring.`;
+    }
+}
+
+// ── Wire up ───────────────────────────────────────────────────────────────────
+['s-cable','s-subs','s-arpu','s-cost'].forEach(id =>
+    document.getElementById(id).addEventListener('input', update));
+
+update();
+</script>
+</body>
+</html>
