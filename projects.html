@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Atharv Gupta</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .projects-page {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 100px 48px 96px;
+        }
+
+        .projects-header {
+            margin-bottom: 52px;
+        }
+        .projects-header h1 {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: var(--color-text-light);
+            margin-bottom: 0;
+        }
+
+        /* ── Project card ── */
+        .project-card {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            border-radius: 3px;
+            text-decoration: none;
+            color: inherit;
+            margin-bottom: 32px;
+            min-height: 340px;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 56px rgba(0,0,0,0.28);
+        }
+
+        /* Background: solid dark base */
+        .project-card { background-color: #181008; }
+
+        /* Logos — transparent PNG, right-anchored ghost */
+        .project-card-bg {
+            position: absolute;
+            inset: 0;
+            background-size: 52%;
+            background-position: right 6% center;
+            background-repeat: no-repeat;
+            opacity: 0.13;
+            transition: opacity 0.45s ease;
+            z-index: 0;
+        }
+        .project-card:hover .project-card-bg {
+            opacity: 0.20;
+        }
+
+        /* Directional gradient: text side fully covered, logo side opens up */
+        .project-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to right,
+                #181008 0%,
+                #181008 35%,
+                rgba(24, 16, 8, 0.78) 58%,
+                rgba(24, 16, 8, 0.22) 100%
+            );
+            transition: opacity 0.45s ease;
+            z-index: 1;
+        }
+
+        /* Content */
+        .project-card-content {
+            position: relative;
+            z-index: 2;
+            padding: 48px 52px 44px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 340px;
+            justify-content: space-between;
+        }
+
+        .project-card-top {}
+
+        .project-type {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.6px;
+            color: rgba(200, 168, 122, 0.75);
+            margin-bottom: 18px;
+        }
+        .project-title {
+            font-size: 38px;
+            font-weight: 300;
+            color: #f0e8d8;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+            margin-bottom: 6px;
+        }
+        .project-title em {
+            font-style: normal;
+            color: #c8a87a;
+        }
+        .project-tagline {
+            font-size: 16px;
+            color: rgba(230, 218, 195, 0.72);
+            font-style: italic;
+            line-height: 1.6;
+            margin-top: 16px;
+            max-width: 520px;
+        }
+
+        .project-card-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 36px;
+        }
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .project-tag {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: rgba(180, 160, 120, 0.6);
+            border: 1px solid rgba(180, 160, 120, 0.2);
+            padding: 3px 9px;
+            border-radius: 2px;
+        }
+        .project-cta {
+            font-size: 13px;
+            color: #c8a87a;
+            white-space: nowrap;
+            letter-spacing: 0.2px;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+        .project-card:hover .project-cta { opacity: 1; }
+
+        /* ── Upcoming cards ── */
+        .project-card-upcoming {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            border-radius: 3px;
+            border: 1px solid var(--color-border);
+            padding: 36px 40px;
+            margin-bottom: 20px;
+            opacity: 0.55;
+        }
+        .upcoming-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: var(--color-text-light);
+            margin-bottom: 10px;
+        }
+        .upcoming-title {
+            font-size: 22px;
+            font-weight: 300;
+            color: var(--color-dark-brown);
+            margin-bottom: 6px;
+        }
+        .upcoming-desc {
+            font-size: 13px;
+            color: var(--color-text-light);
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .projects-page { padding: 88px 20px 72px; }
+            .project-card-content { padding: 36px 28px 32px; }
+            .project-title { font-size: 28px; }
+            .project-tagline { font-size: 14px; }
+            .project-card-bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="index.html" class="logo">Atharv Gupta</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="experience.html">Experience</a></li>
+            <li><a href="writing.html">Writing</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="projects.html" class="active">Projects</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="projects-page">
+
+    <header class="projects-header fade-in">
+        <h1>Projects</h1>
+    </header>
+
+    <!-- Debt Mountain -->
+    <a href="wbd-deal.html" class="project-card fade-in">
+        <div class="project-card-bg" style="background-image: url('wbd-paramount.png');"></div>
+        <div class="project-card-overlay"></div>
+        <div class="project-card-content">
+            <div class="project-card-top">
+                <span class="project-type">Interactive Simulation</span>
+                <h2 class="project-title">The <em>Debt Mountain</em></h2>
+                <p class="project-tagline">The Paramount–Warner Bros. Discovery merger is one of the most consequential bets in media history. $110 billion in debt, two iconic studios, and a streaming war to win. Pull the levers and see if the numbers can actually work.</p>
+            </div>
+            <div class="project-card-bottom">
+                <div class="project-tags">
+                    <span class="project-tag">Media &amp; Entertainment</span>
+                    <span class="project-tag">M&amp;A</span>
+                    <span class="project-tag">Financial Modeling</span>
+                    <span class="project-tag">Streaming</span>
+                </div>
+                <span class="project-cta">Explore the simulator &rarr;</span>
+            </div>
+        </div>
+    </a>
+
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+        document.querySelectorAll('.fade-in').forEach((el, i) => {
+            setTimeout(() => {
+                el.style.opacity = '0';
+                el.style.animation = 'fadeInUp 0.6s ease forwards';
+            }, i * 100);
+        });
+    });
+</script>
+</body>
+</html>

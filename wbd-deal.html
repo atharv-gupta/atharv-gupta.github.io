@@ -17,55 +17,56 @@
             position: relative;
             overflow: hidden;
             margin: -88px -48px 60px -48px;
-            padding: 96px 48px 72px;
+            padding: 96px 48px 80px;
+            background-color: #181008;
         }
-        /* Background: desaturated logos, very dark */
+        /* Logos — transparent PNG, floated right, ghosted */
         .sim-header::before {
             content: '';
             position: absolute;
             inset: 0;
-            background-image: url('WBD-Paramount.jpg');
-            background-size: 72%;
-            background-position: center 55%;
+            background-image: url('wbd-paramount.png');
+            background-size: 48%;
+            background-position: right 5% center;
             background-repeat: no-repeat;
-            filter: grayscale(100%) brightness(0.12);
-            transform: scale(1.06);
+            opacity: 0.11;
             z-index: 0;
         }
-        /* Warm dark gradient over the image */
+        /* Directional gradient: fully opaque left (text), fades right (logos peek through) */
         .sim-header::after {
             content: '';
             position: absolute;
             inset: 0;
             background: linear-gradient(
-                160deg,
-                rgba(34, 26, 18, 0.88) 0%,
-                rgba(28, 22, 14, 0.80) 60%,
-                rgba(22, 17, 10, 0.90) 100%
+                to right,
+                #181008 0%,
+                #181008 38%,
+                rgba(24, 16, 8, 0.82) 62%,
+                rgba(24, 16, 8, 0.30) 100%
             );
             z-index: 1;
         }
         .sim-header > * { position: relative; z-index: 2; }
 
         .sim-header h1 {
-            font-size: 46px;
+            font-size: 52px;
             font-weight: 300;
-            color: #f0e8d8;
-            letter-spacing: -0.5px;
-            margin-bottom: 10px;
-            line-height: 1.1;
+            color: #f2eadb;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+            line-height: 1.05;
         }
         .sim-header h1 em {
-            font-style: normal;
+            font-style: italic;
             color: #c8a87a;
         }
         .sim-header .lede {
-            font-size: 17px;
-            color: rgba(230, 218, 198, 0.75);
+            font-size: 16px;
+            color: rgba(225, 210, 185, 0.62);
             font-style: italic;
             margin-bottom: 0;
-            line-height: 1.6;
-            max-width: 620px;
+            line-height: 1.7;
+            max-width: 560px;
         }
 
         /* ── Grid ── */
@@ -338,7 +339,8 @@
         }
         @media (max-width: 768px) {
             .sim-page { padding: 76px 20px 60px; }
-            .sim-header { margin: -76px -20px 48px -20px; padding: 80px 20px 56px; }
+            .sim-header { margin: -76px -20px 48px -20px; padding: 80px 20px 64px; }
+            .sim-header::before { background-size: 90%; background-position: center bottom; opacity: 0.07; }
             .sim-header h1 { font-size: 32px; }
             .method-grid { grid-template-columns: 1fr; gap: 24px; }
         }
@@ -354,7 +356,7 @@
             <li><a href="experience.html">Experience</a></li>
             <li><a href="writing.html">Writing</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="wbd-deal.html" class="active">Debt Mountain</a></li>
+            <li><a href="projects.html">Projects</a></li>
         </ul>
     </div>
 </nav>
