@@ -296,6 +296,69 @@
             line-height: 1.65;
         }
 
+        /* ── Scenario presets ── */
+        .scenario-presets {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 44px;
+        }
+        .scenario-btn {
+            padding: 20px 20px 18px;
+            border: 1.5px solid var(--color-border);
+            border-left-width: 5px;
+            border-radius: 6px;
+            background: white;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+        }
+        /* Left accent colors */
+        .scenario-btn.plan { border-left-color: #3d6494; }
+        .scenario-btn.bull { border-left-color: #4a7030; }
+        .scenario-btn.base { border-left-color: #b87808; }
+        .scenario-btn.bear { border-left-color: #b8392a; }
+
+        /* Hover — all borders light up */
+        .scenario-btn.plan:hover  { border-color: #3d6494; background: rgba(61,100,148,0.05); }
+        .scenario-btn.bull:hover  { border-color: #4a7030; background: rgba(74,112,48,0.06); }
+        .scenario-btn.base:hover  { border-color: #b87808; background: rgba(184,120,8,0.06); }
+        .scenario-btn.bear:hover  { border-color: #b8392a; background: rgba(184,57,42,0.06); }
+
+        /* Active — saturated tint + slight lift */
+        .scenario-btn.plan.active { border-color: #3d6494; background: rgba(61,100,148,0.10); box-shadow: 0 2px 16px rgba(61,100,148,0.14); }
+        .scenario-btn.bull.active { border-color: #4a7030; background: rgba(74,112,48,0.11); box-shadow: 0 2px 16px rgba(74,112,48,0.14); }
+        .scenario-btn.base.active { border-color: #b87808; background: rgba(184,120,8,0.10); box-shadow: 0 2px 16px rgba(184,120,8,0.14); }
+        .scenario-btn.bear.active { border-color: #b8392a; background: rgba(184,57,42,0.10); box-shadow: 0 2px 16px rgba(184,57,42,0.14); }
+
+        .sc-eyebrow {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            display: block;
+            margin-bottom: 7px;
+        }
+        .scenario-btn.plan .sc-eyebrow { color: #3d6494; }
+        .scenario-btn.bull .sc-eyebrow { color: #4a7030; }
+        .scenario-btn.base .sc-eyebrow { color: #b87808; }
+        .scenario-btn.bear .sc-eyebrow { color: #b8392a; }
+
+        .sc-label {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--color-dark-brown);
+            display: block;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+        .sc-sub {
+            font-size: 12px;
+            color: var(--color-text-light);
+            display: block;
+            line-height: 1.45;
+        }
+
         /* ── Responsive ── */
         @media (max-width: 1100px) {
             .sim-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -304,6 +367,9 @@
             .stat-cell:nth-child(2) { border-right: none; }
             .stat-cell:nth-child(3) { border-top: 1px solid var(--color-border); padding-top: 16px; }
             .stat-cell:nth-child(4) { border-top: 1px solid var(--color-border); border-right: none; padding-top: 16px; }
+        }
+        @media (max-width: 900px) {
+            .scenario-presets { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
             .sim-page { padding: 76px 20px 60px; }
@@ -333,8 +399,32 @@
 
     <header class="sim-header fade-in">
         <h1>The <em>Debt Mountain</em></h1>
-        <p class="lede">Paramount Skydance is buying Warner Bros. Discovery for $110B — $81.6B of which is debt. Drag the sliders to see what it would take to pay it down.</p>
+        <p class="lede">Paramount Skydance is buying Warner Bros. Discovery for $110B. That leaves the combined company with $79B in total debt. Drag the sliders to see what it would take to pay it down.</p>
     </header>
+
+    <!-- Scenario presets — full-width row -->
+    <div class="scenario-presets fade-in">
+        <button class="scenario-btn plan" onclick="applyScenario('plan')">
+            <span class="sc-eyebrow">Their Pitch</span>
+            <span class="sc-label">The Plan</span>
+            <span class="sc-sub">Management's stated targets</span>
+        </button>
+        <button class="scenario-btn bull" onclick="applyScenario('bull')">
+            <span class="sc-eyebrow">Bull Case</span>
+            <span class="sc-label">Everything Clicks</span>
+            <span class="sc-sub">Cable holds, streaming surges</span>
+        </button>
+        <button class="scenario-btn base" onclick="applyScenario('base')">
+            <span class="sc-eyebrow">Base Case</span>
+            <span class="sc-label">Trends Hold</span>
+            <span class="sc-sub">Today's trajectory, no breaks</span>
+        </button>
+        <button class="scenario-btn bear" onclick="applyScenario('bear')">
+            <span class="sc-eyebrow">Bear Case</span>
+            <span class="sc-label">Perfect Storm</span>
+            <span class="sc-sub">Cable craters, growth stalls</span>
+        </button>
+    </div>
 
     <div class="sim-grid">
 
@@ -430,9 +520,9 @@
                     <!-- Mountain top line (crisp edge) -->
                     <path id="mtn-line" fill="none" stroke="rgba(120,80,55,0.3)" stroke-width="1"/>
 
-                    <!-- Day-1 label -->
+                    <!-- Day-1 label (text set dynamically by JS) -->
                     <text id="lbl-day1" x="36" y="0" font-size="10" fill="#b05a3c"
-                          font-family="Georgia,serif" font-style="italic">Day 1: 6.8×</text>
+                          font-family="Georgia,serif" font-style="italic">Day 1: 6.6×</text>
 
                     <!-- X-axis year labels -->
                     <text x="36"  y="218" font-size="10" fill="#b8b0a0" font-family="Georgia,serif">Today</text>
@@ -488,7 +578,7 @@
             <div class="method-block">
                 <h4>Starting Point</h4>
                 <ul>
-                    <li><strong>Day-1 debt:</strong> $81.6B — WBD's existing $47.6B net debt plus $34B from the Skydance deal structure</li>
+                    <li><strong>Day-1 debt:</strong> $79B — the combined obligations of WBD and Paramount Skydance at deal close, per the merged company's own disclosure</li>
                     <li><strong>Interest rate:</strong> 7% blended (WBD's weighted average cost of debt per FY2024 10-K)</li>
                     <li><strong>Starting EBITDA:</strong> ~$12B (WBD FY2024 adjusted EBITDA; Paramount Skydance added at closing)</li>
                     <li><strong>Capex:</strong> $2B/year, held flat</li>
@@ -498,9 +588,10 @@
             <div class="method-block">
                 <h4>Revenue Model</h4>
                 <ul>
-                    <li><strong>Streaming:</strong> 196M combined subscribers (Max + Paramount+) at a blended avg. of $7.76/mo — the average across ad-supported (~$3–5), standard (~$10), and premium (~$16) tiers</li>
+                    <li><strong>Streaming:</strong> 196M combined subscribers (Max + Paramount+), merging into a single platform, at a blended avg. of $7.76/mo across ad-supported (~$3–5), standard (~$10), and premium (~$16) tiers. Each studio releases 15 films/year with 45-day theatrical windows — shortening the runway to streaming vs. the traditional 90 days</li>
                     <li><strong>Streaming margin:</strong> 7% contribution margin, consistent with Max's reported trajectory</li>
-                    <li><strong>Linear / cable:</strong> $11.5B combined annual EBITDA from networks, declining each year at the rate set by the slider</li>
+                    <li><strong>Linear / cable:</strong> $11.5B combined annual EBITDA from networks, declining each year at the rate set by the slider. No cable assets are being sold or spun off; sports rights (including UFC) retain flexibility across all cable networks</li>
+                    <li><strong>Licensing:</strong> The company plans to continue licensing movies and TV shows to third-party studios and platforms — a meaningful revenue stream not modelled separately here</li>
                     <li>Cost savings phase in over 3 years (⅓ in Y1, ⅔ in Y2, full in Y3)</li>
                 </ul>
             </div>
@@ -508,6 +599,7 @@
                 <h4>Cost Structure</h4>
                 <ul>
                     <li><strong>Total cost base:</strong> ~$42B combined (WBD FY2024 10-K costs of revenues + SG&amp;A)</li>
+                    <li><strong>Announced synergy target:</strong> $6B in cuts (~14% of cost base), focused on tech infrastructure consolidation, real estate, and corporate overheads — disclosed by the merged company</li>
                     <li><strong>Labor share:</strong> ~25% of total costs — derived from WBD's SG&amp;A of $9.3B minus $2.2B advertising (Note 2), leaving ~$7.1B in employee costs; PSKY estimated similarly</li>
                     <li><strong>Non-labor 75%:</strong> content acquisition and production, sports rights, licensing, technology platforms, real estate, and distribution</li>
                     <li><strong>Cost per employee:</strong> $200K all-in (salary + benefits + equity)</li>
@@ -515,7 +607,7 @@
             </div>
         </div>
         <div class="method-note">
-            <strong>Sources:</strong> WBD FY2024 Annual Report (10-K filed Feb 2025); Skydance merger proxy and press releases; Paramount Global FY2024 10-K. This is a simplified illustrative model — it does not account for refinancing risk, covenants, asset sales, working capital changes, or deal close timing. Real outcomes will differ. <strong>Not investment advice.</strong>
+            <strong>Sources:</strong> WBD FY2024 Annual Report (10-K filed Feb 2025); Skydance merger proxy and press releases; Paramount Global FY2024 10-K; merged company disclosures on $79B combined debt, $6B synergy target, combined streaming platform, 15-film/45-day theatrical windows per studio, and cable retention strategy. This is a simplified illustrative model — it does not account for refinancing risk, covenants, asset sales, working capital changes, or deal close timing. Real outcomes will differ. <strong>Not investment advice.</strong>
         </div>
     </div>
 
@@ -534,10 +626,20 @@ const COST_PER_HEAD   = 200000;
 // WBD 10-K FY2024: SG&A $9.3B minus advertising $2.2B = ~$7.1B employee costs for WBD.
 // PSKY ~22K employees at $200K = ~$4.4B. Combined labor ~$11.5B / $42B total ≈ 25-27%.
 const LABOR_SHARE     = 0.25;
-const DAY1_DEBT       = 81600;
+const DAY1_DEBT       = 79000;
 const INTEREST_RATE   = 0.07;
 const CAPEX           = 2000;
 const TAX_RATE        = 0.15;
+
+// ── Scenario presets ────────────────────────────────────────────────────────
+// cable / subs / arpu / cost
+const SCENARIOS = {
+    plan: { cable: 7,  subs: 8,  arpu: 5, cost: 14 },  // $6B synergy target, steady streaming
+    bull: { cable: 3,  subs: 13, arpu: 7, cost: 18 },  // sports anchor cable; platform takes off
+    base: { cable: 10, subs: 5,  arpu: 3, cost: 10 },  // WBD's real 2024 decline; partial synergies
+    bear: { cable: 13, subs: 0,  arpu: 1, cost: 3  },  // cord-cutting accelerates; cuts fail
+};
+let activeScenario = null;
 
 // ── SVG layout constants ────────────────────────────────────────────────────
 const C = {
@@ -639,6 +741,7 @@ function renderMountain(levs) {
     const y0 = levToY(levs[0]);
     const lbl = document.getElementById('lbl-day1');
     lbl.setAttribute('y', Math.max(14, y0 - 5).toFixed(1));
+    lbl.textContent = `Day 1: ${levs[0].toFixed(1)}×`;
 }
 
 // ── Formatting ───────────────────────────────────────────────────────────────
@@ -680,8 +783,9 @@ function arpuFeas(r) {
 }
 function costFeas(r) {
     if (r === 0) return pill('red',    'No cuts — unlikely');
-    if (r <= 5)  return pill('green',  'Planned synergies');
-    if (r <= 12) return pill('yellow', 'Major, painful cuts');
+    if (r <= 8)  return pill('yellow', 'Below announced $6B target');
+    if (r <= 16) return pill('green',  'In line with announced plan');
+    if (r <= 22) return pill('yellow', 'Well beyond plan — painful');
     return             pill('red',    'Business-damaging');
 }
 
@@ -691,29 +795,30 @@ function dCable(r) {
     const lossY1 = ns0 - ns0 * (1 - r/100);
     const lossY5 = ns0 - ns0 * Math.pow(1 - r/100, 5);
     const plain  = r === 0
-        ? 'Cable TV holds flat — unlikely, but possible if die-hard subscribers stay put.'
+        ? 'Cable TV holds flat — unlikely, but possible if die-hard subscribers stay put. Notably, the company has ruled out selling or spinning off any cable assets, keeping sports like UFC on air to slow attrition.'
         : r <= 4
-        ? `A gentle decline. Cable is actually falling faster than this right now.`
+        ? `A gentle decline. Cable is actually falling faster than this right now. The decision to keep all cable assets (no spinoffs) and anchor sports like UFC to the bundle may slow the bleed somewhat.`
         : r <= 8
-        ? `A moderate pace. Below WBD's actual 2024 trend, which was 10%.`
+        ? `A moderate pace. Below WBD's actual 2024 trend (~10%). Holding onto sports rights and ruling out cable asset sales buys time, but cord-cutting is structural.`
         : r <= 11
-        ? `This matches WBD's real 2024 decline. The primary income source is shrinking fast.`
-        : `Cable is collapsing. The main source of cash to pay interest disappears within a few years.`;
+        ? `This matches WBD's real 2024 decline rate. The primary source of cash to service interest is shrinking fast — and that's with all cable assets retained and sports keeping subscribers on the bundle.`
+        : `Cable is collapsing. Even anchoring sports rights and refusing to sell networks can't stop the math. The main source of cash to pay interest disappears within a few years.`;
     return cableFeas(r) + `<strong>Cable income loses ${fmt(lossY1,0)} this year, ${fmt(lossY5,0)} by Year 5.</strong> ${plain}`;
 }
 
 function dSubs(r) {
     const y5   = STARTING_SUBS * Math.pow(1 + r/100, 5);
     const y1SE = STARTING_SUBS * (1+r/100) * BASE_ARPU * 12 * (1 - COST_RATIO);
+    const intBill = fmt(DAY1_DEBT * INTEREST_RATE, 1);
     const plain = r < 0
-        ? `Subscribers are leaving. Streaming never compensates for the debt.`
+        ? `Subscribers are leaving the combined platform. Streaming never compensates for the debt — and the 45-day theatrical window means each film has less time in cinemas before it lands on streaming and risks feeling disposable.`
         : r <= 3
-        ? `Slow growth. Streaming adds little when the interest bill is $5.7B a year.`
+        ? `Slow growth for the combined Max + Paramount+ platform. Streaming adds little when the interest bill is ${intBill} a year. The 45-day theatrical window helps get films onto the service faster, but it needs subscribers to care enough to stay.`
         : r <= 9
-        ? `Solid, realistic growth. Even so, streaming profit is only ${fmt(y1SE,1)} in Year 1 — against a $5.7B interest bill.`
+        ? `Solid, realistic growth for a merged platform. Streaming profit is only ${fmt(y1SE,1)} in Year 1 — against a ${intBill} interest bill. The combined library (both studios releasing ~15 films/year) gives the service real content depth.`
         : r <= 14
-        ? `Very aggressive. Would require outpacing every major streaming service currently operating.`
-        : `Unrealistic. No mature streaming platform sustains this growth rate.`;
+        ? `Very aggressive. Would require the combined platform to outpace every major streaming service currently operating. Even with 30 films a year across both studios hitting the service within 45 days of theatrical, subscriber growth at this pace is exceptional.`
+        : `Unrealistic. No mature streaming platform sustains this growth rate, regardless of how strong the combined content slate is.`;
     return subsFeas(r) + `<strong>196M subscribers today → ${y5.toFixed(0)}M in 5 years.</strong> ${plain}`;
 }
 
@@ -734,17 +839,19 @@ function dArpu(r) {
 
 function dCost(r) {
     if (r === 0) {
-        return costFeas(r) + `<strong>No cost cuts assumed.</strong> Every analyst covering this deal expects some cuts. The question is only how many.`;
+        return costFeas(r) + `<strong>No cost cuts assumed.</strong> The merged company has already announced a $6B target (~14% of the cost base). The question is whether they hit it — or go further.`;
     }
     const savM      = COMBINED_COSTS * (r / 100);
     const laborSavM = savM * LABOR_SHARE;          // ~25% of costs are employee-related
-    const otherSavM = savM - laborSavM;            // content, licensing, real estate, tech
+    const otherSavM = savM - laborSavM;            // tech, real estate, corporate, content
     const jobs      = Math.round(laborSavM * 1e6 / COST_PER_HEAD);
     const pct       = Math.round(jobs / EMPLOYEES * 100);
-    const plain = r <= 5
-        ? `Most of that — ${fmt(otherSavM,1)} — comes from cutting content budgets, renegotiating licensing deals, and consolidating offices and technology. WBD's cost base is 55% content spending; headcount is only one lever. The ${jobs.toLocaleString()} layoffs are the painful but smaller piece.`
-        : r <= 12
-        ? `Headcount reductions (${jobs.toLocaleString()} jobs, ${pct}% of the workforce) account for roughly a quarter of the savings. The other ${fmt(otherSavM,1)} comes from slashing film and TV slates, dropping sports rights, and eliminating redundant platforms — cuts that directly reduce what subscribers can watch.`
+    const plain = r <= 8
+        ? `This falls short of the announced $6B target. The non-headcount piece — ${fmt(otherSavM,1)} — covers some tech platform consolidation and real estate, but leaves most of the corporate overhead untouched. The ${jobs.toLocaleString()} layoffs are real but the harder structural work isn't done.`
+        : r <= 16
+        ? `This tracks the announced $6B plan (~14% of costs). The bulk of it — ${fmt(otherSavM,1)} — comes from consolidating two separate tech stacks into one streaming platform, cutting redundant real estate, and eliminating overlapping corporate functions. The ${jobs.toLocaleString()} job losses (${pct}% of the workforce) represent the human cost of merging two giant bureaucracies.`
+        : r <= 22
+        ? `Going well beyond the announced plan. Headcount reductions (${jobs.toLocaleString()} jobs, ${pct}% of the workforce) account for roughly a quarter. The rest — ${fmt(otherSavM,1)} — requires slashing content budgets and dropping sports rights, which erodes the very library that justifies the subscription.`
         : `Cuts this deep gut the creative output that makes subscribers pay in the first place. The ${jobs.toLocaleString()} layoffs are only part of the damage — the rest comes from canceling the shows and deals that justify the subscription price.`;
     return costFeas(r) + `<strong>${fmt(savM,1)} saved per year — including ~${jobs.toLocaleString()} jobs (${pct}% of the combined workforce).</strong> ${plain}`;
 }
@@ -767,6 +874,54 @@ function getMtnHeadline(yr1, hitThreeX, levY10) {
         return `The debt becomes manageable by <strong>Year ${hitThreeX}</strong>. Until then, <span class="hl-red">${intPct} cents of every dollar earned</span> goes to interest — not content or growth.`;
     }
     return `Under these assumptions, the debt reaches a safe level by <strong>Year ${hitThreeX}</strong>. That's still ${hitThreeX} years of <span class="hl-red">${intPct}-cent interest payments</span> on every dollar earned — and requires hitting every single target at once.`;
+}
+
+// ── Apply scenario preset ─────────────────────────────────────────────────────
+function applyScenario(name) {
+    const s = SCENARIOS[name];
+    document.getElementById('s-cable').value = s.cable;
+    document.getElementById('s-subs').value  = s.subs;
+    document.getElementById('s-arpu').value  = s.arpu;
+    document.getElementById('s-cost').value  = s.cost;
+    activeScenario = name;
+    document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`.scenario-btn.${name}`).classList.add('active');
+    update();
+}
+
+// ── Scenario-specific headlines ───────────────────────────────────────────────
+function getScenarioHeadline(scenario, yr1, hitThreeX) {
+    const intPct   = Math.round(yr1.interest / yr1.ebitda * 100);
+    const reachStr = hitThreeX
+        ? `the debt reaches a manageable level by <strong>Year ${hitThreeX}</strong>`
+        : `the debt <strong>never reaches a safe level</strong> within 20 years`;
+
+    if (scenario === 'plan') {
+        if (hitThreeX && hitThreeX <= 10) {
+            return `Management is betting every announced target lands — $6B in cuts, cable managed, streaming on the rise. In Year 1, <span class="hl-red">${intPct}% of every dollar earned still goes to interest</span>. If the plan holds as stated, ${reachStr}. No margin for error.`;
+        }
+        return `Management says the plan works. Even hitting every announced target — $6B in cuts, steady streaming — <span class="hl-red">${intPct}% of every dollar earned goes to interest</span> in Year 1, and ${reachStr}. A lot can go wrong in that time.`;
+    }
+
+    if (scenario === 'bull') {
+        if (hitThreeX && hitThreeX <= 7) {
+            return `Best case: cable slows its fall, the combined platform takes off, and synergies beat the plan. <span class="hl-red">${intPct} cents of every dollar earned</span> still goes to interest in Year 1 — but if everything breaks right, ${reachStr}. Possible. But it requires every single bet to pay off simultaneously.`;
+        }
+        return `Even in the optimistic scenario, <span class="hl-red">${intPct} cents of every dollar earned</span> goes to interest before anything else. The upside case buys time — but ${reachStr}. A best case that still takes this long is not really a best case.`;
+    }
+
+    if (scenario === 'base') {
+        if (hitThreeX) {
+            return `At the pace the industry is actually moving, this is a slow grind. <span class="hl-red">${intPct} cents of every dollar earned</span> goes to interest in Year 1. ${reachStr.charAt(0).toUpperCase() + reachStr.slice(1)} — a long stretch of being financially boxed in while competitors invest freely.`;
+        }
+        return `At the pace the industry is actually moving, the math doesn't work. <span class="hl-red">${intPct} cents of every dollar earned</span> goes to interest in Year 1, and under current trends ${reachStr}. This is how media companies become restructuring stories.`;
+    }
+
+    if (scenario === 'bear') {
+        return `Cable collapses, streaming stalls, and the promised cuts barely materialize. <span class="hl-red">${intPct} cents of every dollar earned</span> go straight to interest — almost nothing left for content, technology, or growth. The debt <strong>never reaches a safe level</strong>. The question isn't whether this company restructures. It's when.`;
+    }
+
+    return getMtnHeadline(yr1, hitThreeX, 0);
 }
 
 // ── Main update ───────────────────────────────────────────────────────────────
@@ -794,9 +949,10 @@ function update() {
     // Model
     const { levs, yr1, hitThreeX } = runModel(cable, subs, arpu, cost);
 
-    // Mountain headline
-    document.getElementById('mtn-headline').innerHTML =
-        getMtnHeadline(yr1, hitThreeX, levs[10]);
+    // Mountain headline — scenario-specific when a preset is active
+    document.getElementById('mtn-headline').innerHTML = activeScenario
+        ? getScenarioHeadline(activeScenario, yr1, hitThreeX)
+        : getMtnHeadline(yr1, hitThreeX, levs[10]);
 
     // Mountain
     animateMountain(levs);
@@ -834,7 +990,14 @@ function update() {
 
 // ── Wire up ───────────────────────────────────────────────────────────────────
 ['s-cable','s-subs','s-arpu','s-cost'].forEach(id =>
-    document.getElementById(id).addEventListener('input', update));
+    document.getElementById(id).addEventListener('input', () => {
+        // Clear scenario preset if user drags a slider manually
+        if (activeScenario) {
+            activeScenario = null;
+            document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+        }
+        update();
+    }));
 
 update();
 </script>
